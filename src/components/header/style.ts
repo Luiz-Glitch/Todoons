@@ -12,7 +12,8 @@ export const Title = styled.Text`
     font-weight: bold;
 `
 
-export const ContainerText = styled.Text`
+export const ContainerText = styled.View`
+    flex-direction: row;
 `
 
 export const TextNormal = styled.Text`
