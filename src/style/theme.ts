@@ -17,9 +17,9 @@ export default {
         }
     },
     fontSize : {
-        sm: 10,
-        md: 12,
-        lg: 16,
-        xl: 24
+        sm: 16,
+        md: 24,
+        lg: 32,
+        xl: 36
     }
 }
