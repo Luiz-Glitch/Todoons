@@ -1,18 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Header } from '../../components/header';
 import { Calendar } from '../../components/calendar';
+import { Container, ContainerButton, ContainerHeaderCalendar } from './style';
+import { Button } from '../../components/button';
 
 export function Home() {
   return (
-    <View>
-      <StatusBar
-        hidden = {false}
-        backgroundColor = "#736CED"
-        translucent = {false}
-      />
-      <Header />
-      <Calendar/>
-    </View>
+    <Container>
+      <ScrollView>
+        <StatusBar
+          hidden = {false}
+          backgroundColor = "#736CED"
+          translucent = {false}
+        />
+        <ContainerHeaderCalendar>
+          <Header />
+          <Calendar/>
+        </ContainerHeaderCalendar>
+      </ScrollView>
+      <ContainerButton>
+        <Button label='Criar tarefa'/>
+      </ContainerButton>
+    </Container>
   );
 }

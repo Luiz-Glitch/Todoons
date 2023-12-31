@@ -3,7 +3,8 @@ import styled from "styled-components/native";
 export const Container = styled.View`
     gap: 8px;
     align-items: center;
-    margin-top: 16px;
+    /* margin-top: 16px; */
+    /* Acho que o esse margin não deve ficar no componente, e sim na tela onde vai ser utilizado */
 `
 
 export const ContainerDay = styled.View`
