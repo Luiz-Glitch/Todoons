@@ -15,7 +15,7 @@ export const ContainerDay = styled.View`
 
 export const TextMonth = styled.Text`
     font-weight: 700;
-    font-size: ${({theme}) => theme.fontSize.sm};
+    font-size: ${({theme}) => theme.fontSize.sm} px;
 `
 
 export const TextToday = styled.Text`
@@ -23,7 +23,7 @@ export const TextToday = styled.Text`
     text-align: center;
     color: ${({theme}) => theme.colors.gray[50]};
     background-color: ${({theme}) => theme.colors.gray[700]};
-    font-size: ${({theme}) => theme.fontSize.md};
+    font-size: ${({theme}) => theme.fontSize.md} px;
     padding: 4px 0px;
     border-radius: 8px;
 `

@@ -9,7 +9,7 @@ export const ButtonStyle = styled.TouchableOpacity`
 `
 
 export const TextStyle = styled.Text`
-    font-size: ${({theme}) => theme.fontSize.sm};
+    font-size: ${({theme}) => theme.fontSize.sm} px;
     color: ${({theme}) => theme.colors.gray[50]};
     font-weight: bold;
 `
