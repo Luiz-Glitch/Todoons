@@ -46,9 +46,18 @@ export const Check = styled.TouchableOpacity`
     justify-content: center;
 `
 
-export const Cicle = styled.View`
-    border: 1px solid black;
+export const CicleOff = styled.View`
+    border: 1.5px solid black;
     width: 20px;
     height: 20px;
     border-radius: 10px;
+`
+
+export const CicleOn = styled.View`
+    border: 1.5px solid green;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
 `
