@@ -11,6 +11,11 @@ export default {
             800: '#3F3B82',
             900: '#302D64'
         },
+        secundary: {
+            300: '#E2D5F2',
+            800: '#756A82'
+        }
+        ,
         gray: {
             50: '#EEEEF2',
             100: '#CBCBD6',
@@ -20,6 +25,7 @@ export default {
         }
     },
     fontSize : {
+        xs: 12,
         sm: 16,
         md: 24,
         lg: 32,

@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
     flex: 1;
 `
 
@@ -17,3 +17,9 @@ export const ContainerButton = styled.View`
     background-color: ${({theme}) => theme.colors.gray[50]};
 `
 
+export const ContainerTask = styled.View`
+    margin-top: 16px;
+    padding: 16px;
+    gap: 12px;
+    background-color: ${({theme}) => theme.colors.primary[100]};
+`
