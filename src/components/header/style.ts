@@ -8,7 +8,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
     color: ${({theme}) => theme.colors.gray[50]};
-    font-size: ${({theme}) => theme.fontSize.lg} px;
+    font-size: ${({theme}) => theme.fontSize.lg}px;
     font-weight: bold;
 `
 
@@ -18,11 +18,11 @@ export const ContainerText = styled.View`
 
 export const TextNormal = styled.Text`
     color: ${({theme}) => theme.colors.gray[50]};
-    font-size: ${({theme}) => theme.fontSize.sm} px;
+    font-size: ${({theme}) => theme.fontSize.sm}px;
 `
 
 export const TextBold = styled.Text`
     color: ${({theme}) => theme.colors.gray[50]};
-    font-size: ${({theme}) => theme.fontSize.sm} px;
+    font-size: ${({theme}) => theme.fontSize.sm}px;
     font-weight: bold;
 `
