@@ -22,4 +22,5 @@ export const ContainerTask = styled.View`
     padding: 16px;
     gap: 12px;
     background-color: ${({theme}) => theme.colors.primary[100]};
+    margin-bottom: 60px;
 `
