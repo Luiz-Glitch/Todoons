@@ -1,20 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
 import { ScrollView } from 'react-native';
 import { Header } from '../../components/header';
 import { Calendar } from '../../components/calendar';
 import { Container, ContainerButton, ContainerHeaderCalendar, ContainerTask } from './style';
 import { Button } from '../../components/button';
 import { Task } from '../../components/task';
+import { useNavigation } from '@react-navigation/native';
 
-export function Home() {
+export function HomeScreen() {
+  const navigation = useNavigation()
   return (
       <Container>
         <ScrollView>
-          <StatusBar
-            hidden = {false}
-            backgroundColor = "#736CED"
-            translucent = {false}
-          />
           <ContainerHeaderCalendar>
             <Header />
             <Calendar/>
@@ -32,7 +28,7 @@ export function Home() {
           </ContainerTask>
         </ScrollView>
         <ContainerButton>
-          <Button label='Criar tarefa'/>
+          <Button label='Criar tarefa' action={() => {navigation.navigate('CreateTask' as never)}}/>
         </ContainerButton>
       </Container>
   );

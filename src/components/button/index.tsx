@@ -8,7 +8,7 @@ interface ButtonProps {
 
 export function Button(props:ButtonProps){
     return (
-        <ButtonStyle>
+        <ButtonStyle onPress={props.action}>
             <TextStyle>{props.label}</TextStyle>
         </ButtonStyle>
     )
