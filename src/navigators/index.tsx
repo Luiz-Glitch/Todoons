@@ -4,7 +4,23 @@ import React from 'react';
 
 import { CreateTaskScreen } from '../screens/CreateTask';
 import { HomeScreen } from '../screens/Home';
-import theme from '../style/theme';
+import styled from 'styled-components/native';
+
+const TitleComponent = styled.Text`
+  margin-top: 40px;
+  font-size: ${({theme}) => theme.fontSize.lg}px;
+  width: 100%;
+  flex-wrap: wrap;
+  font-weight: bold;
+`
+
+function Title({name}: {name:string}) {
+  return (
+    <TitleComponent>
+      {name}
+    </TitleComponent>
+  )
+}
 
 export function Routes() {
   const { Navigator, Screen } = createNativeStackNavigator();
@@ -14,13 +30,22 @@ export function Routes() {
         initialRouteName="Home"
         screenOptions={{
           headerShadowVisible: false,
-        }}>
+          headerStyle: {
+            backgroundColor: '#fafafa'
+          },
+          contentStyle: {
+            backgroundColor: '#fafafa'
+          }
+        }}
+        >
         <Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
 
         <Screen
           name="CreateTask"
           component={CreateTaskScreen}
-          options={{ headerTitle: 'Criar tarefa' }}
+          options={{
+            headerTitle: (props) => <Title name='Criar tarefa' {...props} />,
+          }}
         />
       </Navigator>
     </NavigationContainer>
