@@ -1,4 +1,3 @@
-// This is the
 export default {
   colors: {
     gray: {
@@ -74,11 +73,78 @@ export default {
       900: 'rgba(97,85,45,1)',
     },
   },
-  fontSize: {
-    xs: 12,
-    sm: 16,
-    md: 24,
-    lg: 32,
-    xl: 36,
+  texts: {
+    headingH1Bold: {
+      fontSize: 24,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+    },
+    headingH1Regular: {
+      fontSize: 24,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+    },
+    headingH2Bold: {
+      fontSize: 18,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+      lineHeight: 18 * 1.01,
+    },
+    headingH2Regular: {
+      fontSize: 18,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+      lineHeight: 18 * 1.01,
+    },
+    bodyP1Regular: {
+      fontSize: 16,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+    },
+    bodyP1Bold: {
+      fontSize: 16,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+    },
+    bodyP2Regular: {
+      fontSize: 14,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+    },
+    bodyP2Bold: {
+      fontSize: 14,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+    },
+    bodyP3Regular: {
+      fontSize: 12,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+    },
+    bodyP3Bold: {
+      fontSize: 12,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+    },
+    bodyP3Light: {
+      fontSize: 12,
+      fontFamily: 'Roboto',
+      fontWeight: 300,
+    },
+    bodyP4Light: {
+      fontSize: 10,
+      fontFamily: 'Roboto',
+      fontWeight: 300,
+    },
+    bodyP4Regular: {
+      fontSize: 10,
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+    },
+    bodyP4Bold: {
+      fontSize: 10,
+      fontFamily: 'Roboto',
+      fontWeight: 700,
+    },
   },
 };
