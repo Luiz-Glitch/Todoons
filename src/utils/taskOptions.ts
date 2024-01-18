@@ -1,7 +1,7 @@
 export type Option = {
   label: string;
   value: any;
-  color?: string; // Add color property
+  color?: string;
 };
 
 class EnumOption {
