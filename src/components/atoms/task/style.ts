@@ -23,13 +23,13 @@ export const ContainerIcon = styled.View`
 
 export const TextCategory = styled.Text`
   padding: 2px 4px;
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
-  background-color: ${({ theme }) => theme.colors.secundary[300]};
+  font-size: ${({ theme }) => theme.texts.bodyP4Regular.fontSize}px;
+  background-color: ${({ theme }) => theme.colors.secondary[300]};
   border-radius: 8px;
 `;
 
 export const TextIcon = styled.Text`
-  background-color: ${({ theme }) => theme.colors.secundary[800]};
+  background-color: ${({ theme }) => theme.colors.secondary[800]};
   padding: 2px 8px;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray[50]};
@@ -37,7 +37,7 @@ export const TextIcon = styled.Text`
 `;
 
 export const TextDate = styled.Text`
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
+  font-size: ${({ theme }) => theme.texts.bodyP4Regular.fontSize}px;
 `;
 
 export const Check = styled.TouchableOpacity`

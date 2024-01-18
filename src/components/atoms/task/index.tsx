@@ -38,14 +38,14 @@ export function Task({ name }: text) {
     name = msg + '...';
   }
 
-  const handleChacked = () => {
+  const handleChecked = () => {
     setChecked(!checked);
   };
 
   return (
     <Container>
       <TouchableOpacity />
-      <Check onPress={handleChacked}>
+      <Check onPress={()=>{handleChecked()}}>
         {checked ? (
           <CicleOn>
             <AntDesign name="check" size={14} color="green" />

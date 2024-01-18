@@ -31,7 +31,7 @@ export function HomeScreen() {
           <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
           <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
           <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-        </ContainerTask>
+        </ContainerTask>  
       </ScrollView>
       <ContainerButton>
         <Button
