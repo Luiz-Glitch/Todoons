@@ -2,14 +2,16 @@ import styled from 'styled-components/native';
 
 import theme from '../../style/theme';
 
-export const Container = styled.View`
+export const Container = styled.View<{ showShadow: boolean }>`
   position: relative;
   width: 100%;
-  height: 40px;
+  height: 100%;
   align-self: center;
   justify-content: center;
   background-color: ${theme.colors.primary[50]};
-  border-color: ${theme.colors.gray[100]};
+  shadow: ${({ showShadow }) => (showShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none')};
+  elevation: ${({ showShadow }) => (showShadow ? '1' : '0')};
+  border-radius: 8px 8px 0px 0px;
 
   z-index: 1;
 `;
@@ -25,16 +27,20 @@ export const DropdownContentContainer = styled.View<{
   top: ${({ relativeHeight }) => `${relativeHeight}px`};
   left: ${({ relativeWidth }) => `${relativeWidth}px`};
   padding: 12px 8px 12px 8px;
+  background-color: ${theme.colors.primary[50]};
+  shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  elevation: 1;
   z-index: 2;
-  background: ${theme.colors.primary[50]};
-  border-radius: 0px 0px 8px 8px;
-  border-top-width: 1px;
-  border-color: ${theme.colors.gray[100]};
 `;
 
 export const Label = styled.Text<{ color?: string }>`
   ${theme.texts.bodyP3Bold}
-  color: ${({ color }) => (color ? color : theme.colors.gray[700])};
+  color: ${({ color }) => (color ? color : theme.colors.gray[900])};
+`;
+
+export const Placeholder = styled.Text`
+  ${theme.texts.bodyP3Regular}
+  color: ${theme.colors.gray[400]};
 `;
 
 export const OptionText = styled.Text`

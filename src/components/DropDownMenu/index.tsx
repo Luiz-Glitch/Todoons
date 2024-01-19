@@ -9,15 +9,26 @@ import {
   Animated,
 } from 'react-native';
 
-import { Container, Label, Overlay, DropdownContentContainer, OptionText } from './styles';
+import {
+  Container,
+  Label,
+  Overlay,
+  DropdownContentContainer,
+  OptionText,
+  Placeholder,
+} from './styles';
+import theme from '../../style/theme';
 import { Option } from '../../utils/taskOptions';
 
 interface DropDownMenuProps {
-  label: string;
+  placeholder?: string;
   data: Option[];
 }
 
-export function DropDownMenu({ label, data }: DropDownMenuProps): React.ReactElement {
+export function DropDownMenu({
+  placeholder = 'Selecione uma opção',
+  data,
+}: DropDownMenuProps): React.ReactElement {
   const [isVisible, setIsVisible] = useState(false);
   const [selected, setSelected] = useState<Option | null>(null);
   const [dropdownButtonLayout, setDropdownButtonLayout] = useState({
@@ -35,7 +46,6 @@ export function DropDownMenu({ label, data }: DropDownMenuProps): React.ReactEle
   const onButtonLayout = () => {
     dropdownButtonRef.current?.measure((x, y, width, height, pageX, pageY) => {
       setDropdownButtonLayout({ x, y, width, height, pageX, pageY });
-      console.log(pageX);
     });
   };
 
@@ -48,14 +58,18 @@ export function DropDownMenu({ label, data }: DropDownMenuProps): React.ReactEle
   }, [isVisible]);
 
   return (
-    <Container>
+    <Container showShadow={isVisible}>
       <TouchableOpacity
         ref={dropdownButtonRef}
         style={styles.dropdownButton}
         onPress={() => setIsVisible(!isVisible)}
         onLayout={onButtonLayout}
         activeOpacity={0.2}>
-        <Label color={selected?.color}>{selected ? selected.label : label}</Label>
+        {selected ? (
+          <Label color={selected?.color}>{selected.label}</Label>
+        ) : (
+          <Placeholder>{placeholder}</Placeholder>
+        )}
         <Animated.Image
           source={require('../assets/arrow-down.png')}
           style={{
@@ -108,5 +122,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 8,
+    backgroundColor: `${theme.colors.primary[50]}`,
   },
 });
