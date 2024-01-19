@@ -23,19 +23,19 @@ export const CalendarContainer = styled.View<{
   width: number;
   showShadow: boolean;
 }>`
+  min-width: 260px;
+  width: 80%;
+  height: 100%;
   display: flex;
-  width: ${({ width }) => `${width}px`};
+  align-self: center;
   position: absolute;
-  top: ${({ relativeHeight }) => `${relativeHeight}px`};
-  left: ${({ relativeWidth }) => `${relativeWidth}px`};
-  padding: 12px 8px 12px 8px;
+  margin: 12px 8px 12px 8px;
   z-index: 2;
   border-radius: 0px 0px 8px 8px;
-  background-color: ${theme.colors.primary[50]};
-  shadow: ${({ showShadow }) => (showShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none')};
-  elevation: ${({ showShadow }) => (showShadow ? '1' : '0')};
+  background-color: ${theme.colors.primary[500]};
 `;
 
 export const Overlay = styled.View`
   flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
 `;

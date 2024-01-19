@@ -1,11 +1,13 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { StyleSheet, Modal, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
-import { DateData } from 'react-native-calendars/src/types';
+import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 
-import { CalendarContainer, DateButton, DateText, Overlay, Placeholder } from './styles';
+import { DateButton, DateText, Overlay, Placeholder } from './styles';
 import theme from '../../style/theme';
 import { formatDateRange } from '../../utils/dateUtils';
+
+const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
 export interface dateRange {
   startDate: Date | null;
@@ -19,7 +21,7 @@ export function DateRangeInput() {
   });
 
   const [calendarVisible, setCalendarVisible] = useState(false);
-  const [containerLayout, setContainerLayout] = useState({
+  const [calendarContainerLayout, setCalendarContainerLayout] = useState({
     x: 0,
     y: 0,
     width: 0,
@@ -28,16 +30,15 @@ export function DateRangeInput() {
     pageY: 0,
   });
 
-  const containerRef = useRef<View>(null);
+  const calendarContainerRef = useRef<View>(null);
 
   const onContainerLayout = () => {
-    containerRef.current?.measure((x, y, width, height, pageX, pageY) => {
-      setContainerLayout({ x, y, width, height, pageX, pageY });
+    calendarContainerRef.current?.measure((x, y, width, height, pageX, pageY) => {
+      setCalendarContainerLayout({ x, y, width, height, pageX, pageY });
     });
   };
 
   const selectDay = (day: DateData) => {
-    console.log(day);
     const selectedDate = new Date(day.dateString);
 
     const equalToStartDate = selectedDate.getTime() === dateRange.startDate?.getTime();
@@ -85,7 +86,7 @@ export function DateRangeInput() {
       };
     }
 
-    const marked = {
+    const marked: MarkedDates = {
       [dateRange.startDate?.toISOString().split('T')[0] || '']: {
         startingDay: true,
         color: theme.colors.primary[500],
@@ -103,7 +104,7 @@ export function DateRangeInput() {
   }, [selectDay, dateRange]);
 
   return (
-    <View ref={containerRef} style={styles.container} onLayout={onContainerLayout}>
+    <View style={styles.container}>
       <DateButton onPress={() => setCalendarVisible(!calendarVisible)}>
         {dateRange.endDate && dateRange.startDate ? (
           <DateText>
@@ -118,15 +119,16 @@ export function DateRangeInput() {
         <TouchableWithoutFeedback onPress={() => setCalendarVisible(false)}>
           <Overlay />
         </TouchableWithoutFeedback>
-        <CalendarContainer
-          relativeHeight={containerLayout.height + containerLayout.pageY}
-          relativeWidth={containerLayout.pageX}
-          width={containerLayout.width}
-          showShadow={calendarVisible}>
+        <View
+          ref={calendarContainerRef}
+          onLayout={onContainerLayout}
+          style={[styles.calendarContainer, { top: CENTER_HEIGHT }]}>
           <CalendarList
             markingType="period"
             hideArrows={false}
             scrollEnabled={false}
+            style={{ borderRadius: 8 }}
+            calendarStyle={{ padding: 16, borderRadius: 8 }}
             theme={{
               monthTextColor: `${theme.colors.gray[600]}`,
               textSectionTitleColor: `${theme.colors.gray[300]}`,
@@ -141,9 +143,9 @@ export function DateRangeInput() {
             enableSwipeMonths
             onDayPress={(day) => selectDay(day)}
             markedDates={computedMarkedDates}
-            calendarWidth={containerLayout.width}
+            calendarWidth={calendarContainerLayout.width}
           />
-        </CalendarContainer>
+        </View>
       </Modal>
     </View>
   );
@@ -154,5 +156,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'center',
+  },
+  calendarContainer: {
+    flex: 1,
+    margin: 32,
+    alignSelf: 'center',
+    position: 'absolute',
+    zIndex: 2,
   },
 });
