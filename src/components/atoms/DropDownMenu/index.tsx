@@ -17,8 +17,8 @@ import {
   OptionText,
   Placeholder,
 } from './styles';
-import theme from '../../style/theme';
-import { Option } from '../../utils/taskOptions';
+import theme from '../../../style/theme';
+import { Option } from '../../../utils/taskOptions';
 
 interface DropDownMenuProps {
   placeholder?: string;
