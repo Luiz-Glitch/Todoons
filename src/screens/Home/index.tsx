@@ -6,6 +6,7 @@ import { Button } from '../../components/button';
 import { Calendar } from '../../components/calendar';
 import { Header } from '../../components/header';
 import { Task } from '../../components/task';
+import { SearchBar } from '../../components/SearchBar/index';
 
 export function HomeScreen() {
   const navigation = useNavigation();
@@ -14,8 +15,10 @@ export function HomeScreen() {
       <ScrollView>
         <ContainerHeaderCalendar>
           <Header />
-          <Calendar />
+            <Calendar />
+            <SearchBar/>
         </ContainerHeaderCalendar>
+
         <ContainerTask>
           <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
           <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
