@@ -2,9 +2,10 @@ import { Container, Input, Label } from './styles';
 
 interface MultilineTextInputProps {
   label: string;
+  isCreateTask?: boolean;
 }
 
-export function MultilineTextInput({ label }: MultilineTextInputProps) {
+export function MultilineTextInput({ label, isCreateTask=false }: MultilineTextInputProps) {
   return (
     <Container>
       <Label>{label}</Label>
@@ -13,6 +14,8 @@ export function MultilineTextInput({ label }: MultilineTextInputProps) {
         multiline
         numberOfLines={4}
         placeholder="Digite uma descrição aqui"
+        isCreateTask={isCreateTask}
+        textAlignVertical='top'
       />
     </Container>
   );

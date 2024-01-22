@@ -7,6 +7,7 @@ import { Header } from '../../components/atoms/header';
 import { Task } from '../../components/atoms/task';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useMainContext } from '../../hooks/useMainContext';
 
 type createScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
@@ -14,6 +15,7 @@ type createScreenProp = NativeStackNavigationProp<
 >
 export function HomeScreen() {
   const navigation = useNavigation<createScreenProp>();
+  const { tasks } = useMainContext()
   return (
     <Container>
       <ScrollView>
@@ -22,15 +24,11 @@ export function HomeScreen() {
           <Calendar />
         </ContainerHeaderCalendar>
         <ContainerTask>
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
-          <Task name="olabhfbhfbshvbdfhvbdfbsbsjhbvjbsfvjkbvhjsbv" />
+          {tasks.map((task) => 
+            <Task key={task.id} name={task.title} />
+          )}
+
+        <Task name='Fazer atividade' />
         </ContainerTask>  
       </ScrollView>
       <ContainerButton>

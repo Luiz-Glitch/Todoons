@@ -8,7 +8,7 @@ import styled from 'styled-components/native';
 
 const TitleComponent = styled.Text`
   margin-top: 40px;
-  font-size: ${({theme}) => theme.fontSize.lg}px;
+  font-size: ${({theme}) => theme.texts.headingH2Regular.fontSize}px;
   width: 100%;
   flex-wrap: wrap;
   font-weight: bold;

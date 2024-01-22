@@ -15,15 +15,6 @@ import {
   TextIcon,
 } from './style';
 
-interface TaskProps {
-  id: number;
-  title: string;
-  categories: [];
-  date_final: Date;
-  date_initial: Date;
-  checked?: boolean;
-}
-
 interface text {
   name: string;
 }

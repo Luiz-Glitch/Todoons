@@ -4,8 +4,6 @@ import theme from '../../../style/theme';
 
 export const Container = styled.View`
   width: 100%;
-  height: 100%;
-  gap: 8px;
 `;
 
 export const Label = styled.Text`
@@ -13,9 +11,14 @@ export const Label = styled.Text`
   color: ${theme.colors.gray[600]};
 `;
 
-export const Input = styled.TextInput`
-  ${theme.texts.bodyP4Regular};
-  color: ${theme.colors.gray[600]};
-  text-align-vertical: top;
-  height: 100%;
+export const Input = styled.TextInput<{
+  isCreateTask: boolean
+}>`
+  /* ${theme.texts.bodyP4Regular}; */
+
+  background-color: ${({isCreateTask, theme}) => (isCreateTask? theme.colors.primary[50]:'transparent')};
+  color: ${({isCreateTask, theme}) => (isCreateTask? theme.colors.gray[900]:theme.colors.gray[600])};
+
+  border-radius: 8px;
+  padding: 8px;
 `;
