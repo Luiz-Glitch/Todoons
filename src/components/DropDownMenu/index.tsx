@@ -45,6 +45,7 @@ export function DropDownMenu({
 
   const onButtonLayout = () => {
     dropdownButtonRef.current?.measure((x, y, width, height, pageX, pageY) => {
+      console.log(height);
       setDropdownButtonLayout({ x, y, width, height, pageX, pageY });
     });
   };
@@ -117,11 +118,10 @@ export function DropDownMenu({
 
 const styles = StyleSheet.create({
   dropdownButton: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    padding: 8,
     backgroundColor: `${theme.colors.primary[50]}`,
   },
 });

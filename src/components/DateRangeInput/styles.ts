@@ -4,7 +4,7 @@ import theme from '../../style/theme';
 
 export const DateButton = styled.TouchableOpacity`
   width: 100%;
-  padding-horizontal: 8px;
+  padding: 8px;
 `;
 
 export const DateText = styled.Text`
