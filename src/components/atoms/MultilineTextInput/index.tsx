@@ -1,11 +1,12 @@
 import { Container, Input, Label } from './styles';
+import { TextInputProps } from 'react-native';
 
-interface MultilineTextInputProps {
+interface MultilineTextInputProps extends TextInputProps{
   label: string;
   isCreateTask?: boolean;
 }
 
-export function MultilineTextInput({ label, isCreateTask=false }: MultilineTextInputProps) {
+export function MultilineTextInput({ label, isCreateTask=false, ...props }: MultilineTextInputProps) {
   return (
     <Container>
       <Label>{label}</Label>
@@ -16,6 +17,7 @@ export function MultilineTextInput({ label, isCreateTask=false }: MultilineTextI
         placeholder="Digite uma descrição aqui"
         isCreateTask={isCreateTask}
         textAlignVertical='top'
+        {...props}
       />
     </Container>
   );

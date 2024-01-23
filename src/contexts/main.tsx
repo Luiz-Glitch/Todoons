@@ -47,6 +47,7 @@ export default function MainProvider({ children } : MainProviderProps){
     },[])
 
     async function createTask (task:TaskProps) {
+        
         const tasksStorage = [...tasks, task]
         await AsyncStorage.setItem(storageKeysTasks.all, JSON.stringify(tasksStorage))
         setTasks(tasksStorage)

@@ -8,6 +8,7 @@ import { Task } from '../../components/atoms/task';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMainContext } from '../../hooks/useMainContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type createScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
@@ -27,14 +28,13 @@ export function HomeScreen() {
           {tasks.map((task) => 
             <Task key={task.id} name={task.title} />
           )}
-
-        <Task name='Fazer atividade' />
         </ContainerTask>  
       </ScrollView>
       <ContainerButton>
         <Button
           label="Criar tarefa"
           action={() => {
+            // AsyncStorage.removeItem('tasks')
             navigation.navigate('CreateTask');
           }}
         />
