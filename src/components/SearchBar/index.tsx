@@ -1,18 +1,19 @@
 import { IconOutline } from '@ant-design/icons-react-native';
 import React from 'react';
 
-import { SearchInput, Container } from './style';
+import { SearchInput, Container, SearchButton } from "../searchbar/style";
 
 interface SearchBarProps {
-  value: string;
   placeholder: string;
 }
 
-export function SearchBar() {
+export function SearchBar({placeholder}:SearchBarProps) {
   return (
     <Container>
-      <SearchInput />
-      <IconOutline name="search" />
+      <SearchInput placeholder={placeholder}/>
+      <SearchButton>
+        <IconOutline name="search" size={24}/>
+      </SearchButton>
     </Container>
   );
 }
