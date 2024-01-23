@@ -4,21 +4,15 @@ export const Container = styled.View`
   display:flex;
   flex-direction:row;
   align-items:center;
-  justify-content:start;  
+  justify-content:start;   
+  border-radius: 80px; 
+  padding: 4px 16px 4px 4px;  
+  margin:0px 8px;
+  background-color:${({theme})=>theme.colors.primary[100]};
 `;
 export const SearchInput=styled.TextInput`
-  margin: 0px 8px;
-  width: 80%; 
-  height: 40px; 
-  background-color:${({ theme }) => theme.colors.gray[100]}; 
-  border-radius: 80px; 
-  padding: 8px; 
-  font-size: 16px; 
+  flex: 1;
+  padding: 4px 8px;
 `;
 
-export const SearchButton=styled.View`
-  background-color: ${({theme})=>theme.colors.gray[200]};
-  border-radius: 80px; 
-  padding: 6px; 
-`;
 
