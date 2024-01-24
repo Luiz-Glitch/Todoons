@@ -1,10 +1,22 @@
+import { Control, useController } from 'react-hook-form';
+
 import { Container, Input, Label } from './styles';
 
 interface MultilineTextInputProps {
   label: string;
+  name: string;
+  control: Control<any>;
+  placeholder?: string;
 }
 
-export function MultilineTextInput({ label }: MultilineTextInputProps) {
+export function MultilineTextInput({
+  label,
+  name,
+  control,
+  placeholder = 'Digite um texto aqui',
+}: MultilineTextInputProps) {
+  const { field } = useController({ name, control });
+
   return (
     <Container>
       <Label>{label}</Label>
@@ -12,7 +24,8 @@ export function MultilineTextInput({ label }: MultilineTextInputProps) {
       <Input
         multiline
         numberOfLines={4}
-        placeholder="Digite uma descrição aqui"
+        placeholder={placeholder}
+        onChangeText={(text) => field.onChange(text)}
       />
     </Container>
   );

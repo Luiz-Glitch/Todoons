@@ -1,4 +1,5 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Control, useController } from 'react-hook-form';
 import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import { DateData, MarkedDates } from 'react-native-calendars/src/types';
@@ -9,16 +10,25 @@ import { formatDateRange } from '../../utils/dateUtils';
 
 const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
-export interface dateRange {
+interface DateRange {
   startDate: Date | null;
   endDate: Date | null;
 }
 
-export function DateRangeInput() {
-  const [dateRange, setDateRange] = useState<dateRange>({
-    startDate: null,
-    endDate: null,
-  });
+interface DateRangeInputProps {
+  name: string;
+  control: Control<any>;
+}
+
+const defaultDateRange = {
+  startDate: null,
+  endDate: null,
+};
+
+export function DateRangeInput({ name, control }: DateRangeInputProps) {
+  const { field } = useController({ name, control });
+
+  const [dateRange, setDateRange] = useState<DateRange>(field.value ?? defaultDateRange);
 
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [calendarContainerLayout, setCalendarContainerLayout] = useState({
@@ -73,6 +83,10 @@ export function DateRangeInput() {
 
     return setDateRange({ startDate: null, endDate: null });
   };
+
+  useEffect(() => {
+    field.onChange(dateRange);
+  }, [dateRange]);
 
   const computedMarkedDates = useMemo(() => {
     if (!dateRange.startDate && !dateRange.endDate) return {};

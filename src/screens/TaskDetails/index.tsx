@@ -9,14 +9,14 @@ import { DateRangeInput } from '../../components/DateRangeInput';
 import { DropDownMenu } from '../../components/DropDownMenu';
 import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { IconButton } from '../../components/atoms/iconButton';
-import { Input } from '../../components/atoms/input';
+import { TaskPriority, TaskStatus } from '../../utils/taskOptions';
 
 export function TaskDetailsScreen() {
-  const options = [
-    { label: 'Option 1', value: 1 },
-    { label: 'Option 2', value: 2 },
-    { label: 'Option 3', value: 3 },
-  ];
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      status: TaskStatus.TODO.value,
+    },
+  });
 
   return (
     <Container>
@@ -43,7 +43,9 @@ export function TaskDetailsScreen() {
           <Attribute
             title="Status"
             Icon={<Image source={require('./assets/circle-icon.svg')} style={styles.icon} />}
-            ValueComponent={() => <DropDownMenu data={options} />}
+            ValueComponent={() => (
+              <DropDownMenu name="status" control={control} options={TaskStatus.options} />
+            )}
           />
           <Attribute
             title="Destaque"
@@ -53,7 +55,14 @@ export function TaskDetailsScreen() {
           <Attribute
             title="Prioridade"
             Icon={<Image source={require('./assets/flag-icon.svg')} style={styles.icon} />}
-            ValueComponent={() => <DropDownMenu data={options} />}
+            ValueComponent={() => (
+              <DropDownMenu
+                name="priority"
+                control={control}
+                options={TaskPriority.options}
+                placeholder="Adicione a prioridade da tarefa"
+              />
+            )}
           />
           <Attribute
             title="Categoria"
@@ -63,11 +72,16 @@ export function TaskDetailsScreen() {
           <Attribute
             title="Data"
             Icon={<Image source={require('./assets/calendar-icon.svg')} style={styles.icon} />}
-            ValueComponent={() => <DateRangeInput />}
+            ValueComponent={() => <DateRangeInput name="dates" control={control} />}
           />
         </AttributesContainer>
 
-        <MultilineTextInput label="Descrição" />
+        <MultilineTextInput
+          label="Descrição"
+          name="description"
+          control={control}
+          placeholder="Digite uma descrição aqui"
+        />
       </Content>
     </Container>
   );
