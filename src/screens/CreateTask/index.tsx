@@ -5,11 +5,14 @@ import { InputField } from '../../components/molecules/InputField';
 import { MultilineTextInput } from '../../components/atoms/MultilineTextInput';
 import { DateRangeInput } from '../../components/atoms/DateRangeInput';
 import { Button } from '../../components/atoms/button';
+import { Toggle } from '../../components/atoms/Toggle';
 import { useMainContext } from '../../hooks/useMainContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
-import { useFormik } from 'formik';
+import { useFormik } from 'formik'; 
+
+
 
 type createScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
@@ -57,6 +60,12 @@ export function CreateTaskScreen() {
           <ContainerInputDate>
             <DateRangeInput isCreateTask={true}/>
           </ContainerInputDate>
+          <ContainerInputDate>
+            <DateRangeInput isCreateTask={true}/>
+          </ContainerInputDate>
+
+          <Toggle/>
+          
         </Form>
       </KeyboardAvoidingView>
       <ContainerButton>
