@@ -5,6 +5,7 @@ import { InputField } from '../../components/molecules/InputField';
 import { MultilineTextInput } from '../../components/atoms/MultilineTextInput';
 import { DateRangeInput } from '../../components/atoms/DateRangeInput';
 import { Button } from '../../components/atoms/button';
+import { Priority } from "../../components/molecules/Priority"
 import { Toggle } from '../../components/atoms/Toggle';
 import { useMainContext } from '../../hooks/useMainContext';
 import { useNavigation } from '@react-navigation/native';
@@ -65,8 +66,10 @@ export function CreateTaskScreen() {
           </ContainerInputDate>
 
           <Toggle/>
-          
+          <Priority/>
+
         </Form>
+        
       </KeyboardAvoidingView>
       <ContainerButton>
         <Button label='Salvar' action={form.handleSubmit}/>

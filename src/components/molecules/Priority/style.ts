@@ -12,7 +12,7 @@ export const ContainerGeral=styled.View`
     flex-direction:row;
     align-items:center;
     gap: 45px;
-`
+`;
 export const Titulo=styled.Text`
     color:${({theme})=>theme.colors.gray[500]};
     font-weight:500;
