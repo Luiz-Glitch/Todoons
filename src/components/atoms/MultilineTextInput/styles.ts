@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import theme from '../../style/theme';
+import theme from '../../../style/theme';
 
 export const Container = styled.View`
   width: 100%;
