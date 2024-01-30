@@ -28,7 +28,7 @@ export function HomeScreen() {
         </ContainerHeaderCalendar>
         <ContainerTask>
           {tasks.map((task) => 
-            <Task key={task.id} name={task.title} id={task.id} />
+            <Task key={task.id} task={task} />
           )}
         </ContainerTask>  
       </ScrollView>

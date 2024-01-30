@@ -18,21 +18,18 @@ import {
 } from './style';
 import { useMainContext } from '../../../hooks/useMainContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { TaskProps } from '../../../contexts/main';
 
-interface text {
-  name: string;
-  id: number;
-}
 
-export function Task({ name, id }: text) {
+export function Task({task}: {task:TaskProps}) {
   const [checked, setChecked] = useState(false);
   const { deleteTask } = useMainContext()
-  if (name.length > 22) {
+  if (task.title.length > 22) {
     let msg = '';
     for (let i = 0; i < 22; i++) {
       msg += name[i];
     }
-    name = msg + '...';
+    task.title = msg + '...';
   }
 
   const handleChecked = () => {
@@ -49,7 +46,7 @@ export function Task({ name, id }: text) {
             </ContainerDeleteTask>
           )
         }}
-        onSwipeableOpen={() => deleteTask(id)}
+        onSwipeableOpen={() => deleteTask(task)}
         overshootRight={false}
         friction={1}
       >
@@ -66,7 +63,7 @@ export function Task({ name, id }: text) {
           </Check>
           <ContainerData>
             <ContainerText>
-              <Text>{name}</Text>
+              <Text>{task.title}</Text>
               <ContainerIcon>
                 <TextCategory>Categoria-1</TextCategory>
                 <TextIcon>

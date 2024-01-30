@@ -17,7 +17,7 @@ export interface TaskProps {
 interface MainContextProps {
     tasks: TaskProps[];
     createTask: (task:TaskProps) => void;
-    deleteTask: (id:number) => void;
+    deleteTask: (task:TaskProps) => void;
 }
 interface MainProviderProps {
     children: ReactNode;
@@ -56,9 +56,8 @@ export default function MainProvider({ children } : MainProviderProps){
         setTasks(tasksStorage)
     }
 
-    async function deleteTask(id:number) {
-        const taskDelete = tasks.find((task) => task.id == id)
-        const index = tasks.indexOf(taskDelete ? taskDelete : {} as TaskProps)
+    async function deleteTask(task:TaskProps) {
+        const index = tasks.indexOf(task)
         const newValues = tasks
         newValues.splice(index,1)
         setTasks([...newValues])
