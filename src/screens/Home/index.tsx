@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, Animated } from 'react-native';
 import { Container, ContainerButton, ContainerHeaderCalendar, ContainerTask } from './style';
 import { SearchBar } from '../../components/molecules/SearchBar';
 import { Button } from '../../components/atoms/button';
@@ -9,7 +9,6 @@ import { Task } from '../../components/atoms/task';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMainContext } from '../../hooks/useMainContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type createScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
@@ -18,6 +17,7 @@ type createScreenProp = NativeStackNavigationProp<
 export function HomeScreen() {
   const navigation = useNavigation<createScreenProp>();
   const { tasks } = useMainContext()
+
   return (
     <Container>
       <ScrollView>
@@ -28,7 +28,7 @@ export function HomeScreen() {
         </ContainerHeaderCalendar>
         <ContainerTask>
           {tasks.map((task) => 
-            <Task key={task.id} name={task.title} />
+            <Task key={task.id} name={task.title} id={task.id} />
           )}
         </ContainerTask>  
       </ScrollView>
@@ -37,6 +37,7 @@ export function HomeScreen() {
           label="Criar tarefa"
           action={() => {
             // AsyncStorage.removeItem('tasks')
+            console.log(tasks)
             navigation.navigate('CreateTask');
           }}
         />
@@ -44,3 +45,11 @@ export function HomeScreen() {
     </Container>
   );
 }
+
+const teste = StyleSheet.create({
+  teste: {
+    backgroundColor: '#000',
+    width: 150,
+    height:80,
+  }
+})

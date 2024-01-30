@@ -1,6 +1,13 @@
 import styled from 'styled-components/native';
+import { Animated } from 'react-native';
 
 export const Container = styled.View`
+  background-color: ${({theme}) => theme.colors.error[500]};
+  border-radius: 8px;
+`
+
+export const ContainerMain = styled(Animated.View)`
+  background-color: #fff;
   flex-direction: row;
   background-color: white;
   padding: 8px;
