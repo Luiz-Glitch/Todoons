@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import theme from '../../../style/theme';
+import theme from '../../style/theme';
 
 export const DateButton = styled.TouchableOpacity`
   width: 100%;
