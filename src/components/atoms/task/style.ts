@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import { Swipeable } from 'react-native-gesture-handler';
 
 export const Container = styled(Swipeable)`
-  background-color: ${({theme}) => theme.colors.error[500]};
   border-radius: 8px;
 `
 

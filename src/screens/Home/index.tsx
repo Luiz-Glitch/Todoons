@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, StyleSheet, FlatList } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Container, ContainerButton, ContainerHeaderCalendar, ContainerTask } from './style';
 import { SearchBar } from '../../components/molecules/SearchBar';
 import { Button } from '../../components/atoms/button';
@@ -45,11 +45,3 @@ export function HomeScreen() {
     </Container>
   );
 }
-
-const teste = StyleSheet.create({
-  teste: {
-    backgroundColor: '#000',
-    width: 150,
-    height:80,
-  }
-})

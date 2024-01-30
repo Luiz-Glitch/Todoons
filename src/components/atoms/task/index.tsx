@@ -1,6 +1,6 @@
 import { AntDesign, EvilIcons, Feather } from '@expo/vector-icons';
-import React, { useRef, useState } from 'react';
-import { Animated, PanResponder, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 
 import {
   Container,

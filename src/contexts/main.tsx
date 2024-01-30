@@ -1,7 +1,6 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storageKeysTasks } from "../hooks/storageKeys";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export interface TaskProps {
     id: number;
