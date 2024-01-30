@@ -9,7 +9,7 @@ export default function App() {
       <MainProvider>
           <ThemeProvider theme={theme}>
             <StatusBar hidden={false} backgroundColor="#736CED" translucent={false} />
-              <Routes />
+            <Routes />
           </ThemeProvider>
       </MainProvider>
   );

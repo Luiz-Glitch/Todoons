@@ -62,7 +62,7 @@ export default function MainProvider({ children } : MainProviderProps){
         const index = tasks.indexOf(taskDelete ? taskDelete : {} as TaskProps)
         const newValues = tasks
         newValues.splice(index,1)
-        setTasks(newValues)
+        setTasks([...newValues])
     }
 
     return (

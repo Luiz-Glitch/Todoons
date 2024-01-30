@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, StyleSheet, Animated } from 'react-native';
+import { ScrollView, StyleSheet, FlatList } from 'react-native';
 import { Container, ContainerButton, ContainerHeaderCalendar, ContainerTask } from './style';
 import { SearchBar } from '../../components/molecules/SearchBar';
 import { Button } from '../../components/atoms/button';

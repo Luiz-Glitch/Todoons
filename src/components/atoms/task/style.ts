@@ -1,12 +1,22 @@
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled(Swipeable)`
   background-color: ${({theme}) => theme.colors.error[500]};
   border-radius: 8px;
 `
 
-export const ContainerMain = styled(Animated.View)`
+export const ContainerDeleteTask = styled.View`
+  background-color: ${({theme}) => theme.colors.error[500]};
+  border-radius: 8px;
+  align-items:flex-end;
+  justify-content:center;
+  width:100%;
+  padding-right:16px;
+`
+
+export const ContainerMain = styled.View`
+  display: flex;
   background-color: #fff;
   flex-direction: row;
   background-color: white;
