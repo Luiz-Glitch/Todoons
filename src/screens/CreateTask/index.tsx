@@ -6,6 +6,7 @@ import { MultilineTextInput } from '../../components/atoms/MultilineTextInput';
 import { DateRangeInput } from '../../components/atoms/DateRangeInput';
 import { Button } from '../../components/atoms/button';
 import { Priority } from "../../components/molecules/Priority"
+import { Categories } from '../../components/molecules/Categories';
 import { Toggle } from '../../components/atoms/Toggle';
 import { useMainContext } from '../../hooks/useMainContext';
 import { useNavigation } from '@react-navigation/native';
@@ -67,6 +68,7 @@ export function CreateTaskScreen() {
 
           <Toggle/>
           <Priority/>
+          <Categories/>
 
         </Form>
         

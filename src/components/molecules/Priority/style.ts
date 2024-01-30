@@ -12,6 +12,9 @@ export const ContainerGeral=styled.View`
     flex-direction:row;
     align-items:center;
     gap: 45px;
+    padding:8px;
+    border-bottom-width:1px;
+    border-bottom-color: gray;
 `;
 export const Titulo=styled.Text`
     color:${({theme})=>theme.colors.gray[500]};
