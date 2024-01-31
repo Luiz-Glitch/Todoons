@@ -11,7 +11,7 @@ export const ContainerGeral=styled.View`
     display:flex;
     flex-direction:row;
     align-items:center;
-    gap: 45px;
+    gap: 16px;
     padding:8px;
     border-bottom-width:1px;
     border-bottom-color: gray;
