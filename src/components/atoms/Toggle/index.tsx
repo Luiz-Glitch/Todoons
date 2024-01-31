@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { Switch } from "react-native";
 import {Container, Titulo, ContainerGeral} from "./style"
 import { AntDesign } from '@expo/vector-icons';
+import { MainContext } from "../../../contexts/main";
 
 export const Toggle = ()=>{
+    const { emphasis, toggleEmphasis } = useContext(MainContext);
     const [isEnabled, setIsEnable] = useState(false);
-    const toggleSwitch= ()=> setIsEnable(previousState=>!previousState);
+    const toggleSwitch= ()=> {
+        setIsEnable(previousState=>!previousState);
+        toggleEmphasis();
+    }
 
     return(
         <ContainerGeral>

@@ -19,8 +19,8 @@ export const Priority = () => {
 
 const Styles = StyleSheet.create({
     ContainerGeral: {
-        height:"10%",
-        width:"100%"
+        flex:1
+
     },
 }
 )

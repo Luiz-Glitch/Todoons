@@ -18,6 +18,7 @@ interface MainContextProps {
     tasks: TaskProps[];
     createTask: (task:TaskProps) => void;
     deleteTask: (task:TaskProps) => void;
+
 }
 interface MainProviderProps {
     children: ReactNode;
@@ -63,8 +64,14 @@ export default function MainProvider({ children } : MainProviderProps){
         setTasks([...newValues])
     }
 
+    const [emphasis, setEmphasis] = useState(false);
+
+    const toggleEmphasis = () => {
+    setEmphasis((prevEmphasis) => !prevEmphasis);
+    };
+
     return (
-        <MainContext.Provider value={{tasks,createTask, deleteTask}}>
+        <MainContext.Provider value={{tasks,createTask, deleteTask, emphasis,toggleEmphasis}}>
             {children}
         </MainContext.Provider>
     )
