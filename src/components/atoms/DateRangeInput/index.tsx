@@ -4,9 +4,9 @@ import { CalendarList } from 'react-native-calendars';
 import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 
 import { DateButton, DateText, Label, Overlay, Placeholder } from './styles';
+import { DateRange } from '../../../contexts/main';
 import theme from '../../../style/theme';
 import { formatDateRange } from '../../../utils/dateUtils';
-import { DateRange } from '../../../contexts/main';
 
 const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 

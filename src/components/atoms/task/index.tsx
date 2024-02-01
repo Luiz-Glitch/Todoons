@@ -1,6 +1,7 @@
 import { AntDesign, EvilIcons, Feather } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -16,9 +17,8 @@ import {
   TextDate,
   TextIcon,
 } from './style';
-import { useMainContext } from '../../../hooks/useMainContext';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { TaskProps } from '../../../contexts/main';
+import { useMainContext } from '../../../hooks/useMainContext';
 
 export function Task({ task }: { task: TaskProps }) {
   const [checked, setChecked] = useState(false);
@@ -49,7 +49,7 @@ export function Task({ task }: { task: TaskProps }) {
         overshootRight={false}
         friction={1}>
         <ContainerMain>
-          <TouchableOpacity></TouchableOpacity>
+          <TouchableOpacity />
           <Check
             onPress={() => {
               handleChecked();

@@ -1,7 +1,8 @@
+import { AntDesign } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Switch } from 'react-native';
+
 import { Container, Titulo, ContainerGeral } from './style';
-import { AntDesign } from '@expo/vector-icons';
 
 interface ToggleProps {
   value: boolean;

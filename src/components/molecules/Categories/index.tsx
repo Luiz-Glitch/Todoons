@@ -1,4 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
+
 import { Container, ContainerGeral, Titulo, AddTag } from './style';
 
 export const Categories = () => {

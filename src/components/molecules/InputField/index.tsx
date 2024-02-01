@@ -1,7 +1,8 @@
 import React from 'react';
-import { Input } from '../../atoms/input';
-import { Container, Label, TextError } from './style';
 import { TextInputProps } from 'react-native';
+
+import { Container, Label, TextError } from './style';
+import { Input } from '../../atoms/input';
 
 interface props extends TextInputProps {
   label: string;

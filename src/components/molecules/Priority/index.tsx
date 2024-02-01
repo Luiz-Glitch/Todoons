@@ -1,7 +1,8 @@
 import { AntDesign } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
+
 import { Container, ContainerGeral, Titulo } from './style';
 import { DropDownMenu } from '../../atoms/DropDownMenu';
-import { StyleSheet } from 'react-native';
 
 export const Priority = () => {
   return (

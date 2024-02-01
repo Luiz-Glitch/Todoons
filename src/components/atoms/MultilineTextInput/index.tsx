@@ -1,5 +1,6 @@
-import { Container, Input, Label, TextError } from './styles';
 import { TextInputProps } from 'react-native';
+
+import { Container, Input, Label, TextError } from './styles';
 
 interface MultilineTextInputProps extends TextInputProps {
   label: string;

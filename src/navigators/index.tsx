@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import styled from 'styled-components/native';
 
 import { CreateTaskScreen } from '../screens/CreateTask';
 import { HomeScreen } from '../screens/Home';
-import styled from 'styled-components/native';
 
 const TitleComponent = styled.Text`
   margin-top: 40px;

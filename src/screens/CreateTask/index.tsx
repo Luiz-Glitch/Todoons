@@ -20,9 +20,9 @@ type createScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
 
 const Schema = Yup.object({
   title: Yup.string()
-    .max(10, 'O máximo  de caractéres foi atingido')
+    .max(255, 'O máximo  de caractéres foi atingido')
     .required('O campo é obrigatório'),
-  description: Yup.string().max(5, 'O máximo  de caractéres foi atingido'),
+  description: Yup.string(),
 });
 
 export function CreateTaskScreen() {
