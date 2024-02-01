@@ -68,12 +68,6 @@ export default function MainProvider({ children } : MainProviderProps){
         setTasks([...newValues])
     }
 
-    const [emphasis, setEmphasis] = useState(false);
-
-    const toggleEmphasis = () => {
-    setEmphasis((prevEmphasis) => !prevEmphasis);
-    };
-
     return (
         <MainContext.Provider value={{tasks,createTask, deleteTask}}>
             {children}
