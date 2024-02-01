@@ -1,17 +1,32 @@
 import { AntDesign } from '@expo/vector-icons';
-import { StyleSheet } from 'react-native';
+import { Control } from 'react-hook-form';
+import { StyleSheet, View } from 'react-native';
 
 import { Container, ContainerGeral, Titulo } from './style';
-import { DropDownMenu } from '../../atoms/DropDownMenu';
+import { TaskPriority } from '../../../utils/taskOptions';
+import { DropDownMenu } from '../../DropDownMenu';
+import React from 'react';
 
-export const Priority = () => {
+interface PriorityProps {
+  name: string;
+  control: Control<any>;
+}
+
+export const Priority = ({ name, control }: PriorityProps) => {
   return (
     <ContainerGeral style={Styles.ContainerGeral}>
       <Container>
         <AntDesign name="flag" size={24} color="gray" />
         <Titulo>Prioridade</Titulo>
       </Container>
-      <DropDownMenu data={[]} />
+      <View style={{ borderRadius: 8 }}>
+        <DropDownMenu
+          name={name}
+          control={control}
+          options={TaskPriority.options}
+          placeholder="Escolha uma prioridade para a tarefa"
+        />
+      </View>
     </ContainerGeral>
   );
 };

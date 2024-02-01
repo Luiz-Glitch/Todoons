@@ -94,7 +94,7 @@ export function DropDownMenu({
           <Placeholder>{placeholder}</Placeholder>
         )}
         <Animated.Image
-          source={require('../../../components/assets/arrow-down.png')}
+          source={require('../assets/arrow-down.png')}
           style={{
             transform: [
               {

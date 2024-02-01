@@ -1,19 +1,24 @@
+import { error } from 'console';
+import { Control, useController } from 'react-hook-form';
 import { TextInputProps } from 'react-native';
 
 import { Container, Input, Label, TextError } from './styles';
 
-interface MultilineTextInputProps extends TextInputProps {
+interface MultilineTextInputProps {
+  name: string;
+  control: Control<any>;
   label: string;
-  isCreateTask?: boolean;
-  error: string | undefined;
+  isCreateTask: boolean;
 }
 
 export function MultilineTextInput({
+  name,
+  control,
   label,
-  error,
-  isCreateTask = false,
-  ...props
+  isCreateTask,
 }: MultilineTextInputProps) {
+  const { field, fieldState } = useController({ name, control });
+
   return (
     <Container>
       <Label>{label}</Label>
@@ -22,11 +27,12 @@ export function MultilineTextInput({
         multiline
         numberOfLines={4}
         placeholder="Digite uma descrição aqui"
+        onChangeText={(text) => field.onChange(text)}
+        onBlur={field.onBlur}
         isCreateTask={isCreateTask}
         textAlignVertical="top"
-        {...props}
       />
-      {error && <TextError>{error}</TextError>}
+      {fieldState.error && <TextError>{fieldState.error.message}</TextError>}
     </Container>
   );
 }

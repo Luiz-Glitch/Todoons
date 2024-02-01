@@ -1,16 +1,17 @@
 import { AntDesign } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React from 'react';
+import { Control, useController } from 'react-hook-form';
 import { Switch } from 'react-native';
 
 import { Container, Titulo, ContainerGeral } from './style';
 
 interface ToggleProps {
-  value: boolean;
-  setValue: (field: string, value: any) => void;
+  name: string;
+  control: Control<any>;
 }
 
-export const Toggle = ({ value, setValue }: ToggleProps) => {
-  const [isEnabled, setIsEnable] = useState(value);
+export const Toggle = ({ name, control }: ToggleProps) => {
+  const { field } = useController({ name, control });
 
   return (
     <ContainerGeral>
@@ -18,13 +19,7 @@ export const Toggle = ({ value, setValue }: ToggleProps) => {
         <AntDesign name="pushpino" size={24} color="gray" />
         <Titulo>Destaque</Titulo>
       </Container>
-      <Switch
-        onValueChange={() => {
-          setIsEnable(!isEnabled);
-          setValue('emphasis', !isEnabled);
-        }}
-        value={isEnabled}
-      />
+      <Switch onValueChange={() => field.onChange(!field.value)} value={field.value} />
     </ContainerGeral>
   );
 };

@@ -2,8 +2,20 @@ import styled from 'styled-components/native';
 
 import theme from '../../style/theme';
 
-export const DateButton = styled.TouchableOpacity`
+export const Label = styled.Text`
+  font-size: ${({ theme }) => theme.texts.bodyP3Regular.fontSize}px;
+  font-weight: 500;
+  margin-bottom: 8px;
+`;
+
+export const DateButton = styled.TouchableOpacity<{
+  isCreateTask: boolean;
+}>`
   width: 100%;
+  background-color: ${({ isCreateTask, theme }) =>
+    isCreateTask ? theme.colors.primary[50] : 'transparent'};
+  color: ${({ isCreateTask, theme }) => (isCreateTask ? theme.colors.gray[900] : '#000')};
+  border-radius: 8px;
   padding: 8px;
 `;
 
