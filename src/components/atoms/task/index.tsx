@@ -20,6 +20,7 @@ import {
 } from './style';
 import { TaskProps } from '../../../contexts/main';
 import { useMainContext } from '../../../hooks/useMainContext';
+import { formatDateRange } from '../../../utils/dateUtils';
 
 export function Task({ task }: { task: TaskProps }) {
   const { deleteTask } = useMainContext();
@@ -73,7 +74,16 @@ export function Task({ task }: { task: TaskProps }) {
             </ContainerText>
             <DateContainer>
               <EvilIcons name="calendar" size={14} color="black" />
-              <TextDate>{task.term}</TextDate>
+              {task.dates?.startDate && task.dates.endDate ? (
+                <TextDate>
+                  {formatDateRange({
+                    startDate: new Date(task.dates.startDate),
+                    endDate: new Date(task.dates.endDate),
+                  })}
+                </TextDate>
+              ) : (
+                <TextDate>Sem data</TextDate>
+              )}
             </DateContainer>
           </ContainerData>
         </ContainerMain>

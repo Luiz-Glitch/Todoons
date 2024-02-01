@@ -58,7 +58,6 @@ export function DropDownMenu({
 
   const onButtonLayout = () => {
     dropdownButtonRef.current?.measure((x, y, width, height, pageX, pageY) => {
-      console.log(height);
       setDropdownButtonLayout({ x, y, width, height, pageX, pageY });
     });
   };

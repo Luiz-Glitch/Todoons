@@ -11,12 +11,12 @@ export interface DateRange {
 export interface TaskProps {
   id: number;
   title: string;
-  description?: string;
-  categories?: [];
-  term?: string;
+  status?: boolean;
   emphasis?: boolean;
   priority?: string;
-  checked?: boolean;
+  categories?: [];
+  dates?: DateRange;
+  description?: string;
 }
 
 interface MainContextProps {
