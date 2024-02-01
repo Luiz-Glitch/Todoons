@@ -12,7 +12,7 @@ export interface TaskProps {
     title: string;
     description?: string;
     categories?: [];
-    term?: DateRange;
+    term?: string;
     emphasis?: boolean;
     priority?: string;
     checked?: boolean;
@@ -57,6 +57,7 @@ export default function MainProvider({ children } : MainProviderProps){
     },[tasks])
 
     async function createTask (task:TaskProps) {
+        alert(JSON.stringify(task))
         const tasksStorage = [...tasks, task]
         setTasks(tasksStorage)
     }

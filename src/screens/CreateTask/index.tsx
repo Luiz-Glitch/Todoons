@@ -14,7 +14,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { DateRange } from '../../contexts/main';
 
 
 
@@ -37,10 +36,8 @@ export function CreateTaskScreen() {
     initialValues: {
       title:'',
       description: '',
-      term: {
-        startDate: null,
-        endDate: null,
-      },
+      term: '',
+      emphasis: false,
     },
     onSubmit: (values) => {
       let id = 0
@@ -81,7 +78,10 @@ export function CreateTaskScreen() {
             />
           </ContainerInputDate>
 
-          <Toggle/>
+          <Toggle
+            value={form.values.emphasis}
+            setValue={form.setFieldValue}
+          />
           <Priority/>
           <Categories/>
 

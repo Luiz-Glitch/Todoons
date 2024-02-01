@@ -12,12 +12,15 @@ const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
 interface DataRangeInputProps {
   isCreateTask?: boolean;
-  value: DateRange;
+  value: string;
   onChageDate: (e: string | ChangeEvent<any>) => void
 }
 
 export function DateRangeInput({isCreateTask=false, value, onChageDate} : DataRangeInputProps) {
-  const [dateRange, setDateRange] = useState<DateRange>(value);
+  const [dateRange, setDateRange] = useState<DateRange>({
+    startDate: null,
+    endDate: null
+  });
   useEffect(() => {
     function updateValue(){
       if (dateRange.startDate && dateRange.endDate){
