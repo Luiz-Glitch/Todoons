@@ -24,6 +24,7 @@ export const ContainerMain = styled.View`
 `;
 
 export const ContainerData = styled.View`
+  gap: 4px;
   flex-basis: 90%;
 `;
 
@@ -50,6 +51,12 @@ export const TextIcon = styled.Text`
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray[50]};
   text-align: center;
+`;
+
+export const DateContainer = styled.View`
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
 `;
 
 export const TextDate = styled.Text`

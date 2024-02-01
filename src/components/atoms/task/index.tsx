@@ -1,5 +1,5 @@
 import { AntDesign, EvilIcons, Feather } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -16,24 +16,26 @@ import {
   TextCategory,
   TextDate,
   TextIcon,
+  DateContainer,
 } from './style';
 import { TaskProps } from '../../../contexts/main';
 import { useMainContext } from '../../../hooks/useMainContext';
 
 export function Task({ task }: { task: TaskProps }) {
-  const [checked, setChecked] = useState(false);
   const { deleteTask } = useMainContext();
-  if (task.title.length > 22) {
-    let msg = '';
-    for (let i = 0; i < 22; i++) {
-      msg += name[i];
-    }
-    task.title = msg + '...';
-  }
+  const [checked, setChecked] = useState(false);
 
-  const handleChecked = () => {
-    setChecked(!checked);
-  };
+  const displayedTitleText = useMemo(() => {
+    if (task.title.length > 22) {
+      let text = '';
+      for (let i = 0; i < 22; i++) {
+        text += task.title[i];
+      }
+      text += '...';
+      return text;
+    }
+    return task.title;
+  }, [task.title]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -50,10 +52,7 @@ export function Task({ task }: { task: TaskProps }) {
         friction={1}>
         <ContainerMain>
           <TouchableOpacity />
-          <Check
-            onPress={() => {
-              handleChecked();
-            }}>
+          <Check onPress={() => setChecked(!checked)}>
             {checked ? (
               <CicleOn>
                 <AntDesign name="check" size={14} color="green" />
@@ -64,7 +63,7 @@ export function Task({ task }: { task: TaskProps }) {
           </Check>
           <ContainerData>
             <ContainerText>
-              <Text>{task.title}</Text>
+              <Text>{displayedTitleText}</Text>
               <ContainerIcon>
                 <TextCategory>Categoria-1</TextCategory>
                 <TextIcon>
@@ -72,10 +71,10 @@ export function Task({ task }: { task: TaskProps }) {
                 </TextIcon>
               </ContainerIcon>
             </ContainerText>
-            <TextDate>
+            <DateContainer>
               <EvilIcons name="calendar" size={14} color="black" />
-              {task.term}
-            </TextDate>
+              <TextDate>{task.term}</TextDate>
+            </DateContainer>
           </ContainerData>
         </ContainerMain>
       </Container>
