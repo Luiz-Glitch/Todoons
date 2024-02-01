@@ -9,7 +9,7 @@ export const Container = styled.View<{ showShadow: boolean }>`
   align-self: center;
   justify-content: center;
   background-color: ${theme.colors.primary[50]};
-  shadow: ${({ showShadow }) => (showShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none')};
+  box-shadow: ${({ showShadow }) => (showShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none')};
   elevation: ${({ showShadow }) => (showShadow ? '1' : '0')};
   border-radius: 8px 8px 0px 0px;
 
@@ -28,7 +28,7 @@ export const DropdownContentContainer = styled.View<{
   left: ${({ relativeWidth }) => `${relativeWidth}px`};
   padding: 12px 8px 12px 8px;
   background-color: ${theme.colors.primary[50]};
-  shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   elevation: 1;
   z-index: 2;
 `;
