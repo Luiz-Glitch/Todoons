@@ -20,10 +20,9 @@ import { useMainContext } from '../../../hooks/useMainContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { TaskProps } from '../../../contexts/main';
 
-
-export function Task({task}: {task:TaskProps}) {
+export function Task({ task }: { task: TaskProps }) {
   const [checked, setChecked] = useState(false);
-  const { deleteTask } = useMainContext()
+  const { deleteTask } = useMainContext();
   if (task.title.length > 22) {
     let msg = '';
     for (let i = 0; i < 22; i++) {
@@ -37,22 +36,24 @@ export function Task({task}: {task:TaskProps}) {
   };
 
   return (
-    <GestureHandlerRootView style={{flex:1}}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Container
         renderRightActions={() => {
           return (
             <ContainerDeleteTask>
-              <Feather name="trash" size={24} color="white"/>
+              <Feather name="trash" size={24} color="white" />
             </ContainerDeleteTask>
-          )
+          );
         }}
         onSwipeableOpen={() => deleteTask(task)}
         overshootRight={false}
-        friction={1}
-      >
+        friction={1}>
         <ContainerMain>
           <TouchableOpacity></TouchableOpacity>
-          <Check onPress={()=>{handleChecked()}}>
+          <Check
+            onPress={() => {
+              handleChecked();
+            }}>
             {checked ? (
               <CicleOn>
                 <AntDesign name="check" size={14} color="green" />

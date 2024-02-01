@@ -2,7 +2,8 @@ import styled from 'styled-components/native';
 
 export const ButtonStyle = styled.TouchableOpacity`
   height: 48px;
-  background-color: ${({ theme, disabled }) => disabled?theme.colors.primary[100]:theme.colors.primary[500]};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.primary[100] : theme.colors.primary[500]};
   border-radius: 16px;
   align-items: center;
   justify-content: center;

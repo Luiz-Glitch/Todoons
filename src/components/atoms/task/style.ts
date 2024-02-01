@@ -3,16 +3,16 @@ import { Swipeable } from 'react-native-gesture-handler';
 
 export const Container = styled(Swipeable)`
   border-radius: 8px;
-`
+`;
 
 export const ContainerDeleteTask = styled.View`
-  background-color: ${({theme}) => theme.colors.error[500]};
+  background-color: ${({ theme }) => theme.colors.error[500]};
   border-radius: 8px;
-  align-items:flex-end;
-  justify-content:center;
-  width:100%;
-  padding-right:16px;
-`
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding-right: 16px;
+`;
 
 export const ContainerMain = styled.View`
   display: flex;

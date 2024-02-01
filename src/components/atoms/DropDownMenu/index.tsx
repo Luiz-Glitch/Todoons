@@ -22,7 +22,7 @@ import { Option } from '../../../utils/taskOptions';
 
 interface DropDownMenuProps {
   placeholder?: string;
-  data : Option[];
+  data: Option[];
 }
 
 export function DropDownMenu({
@@ -71,7 +71,7 @@ export function DropDownMenu({
           <Placeholder>{placeholder}</Placeholder>
         )}
         <Animated.Image
-          source={require("../../../components/assets/arrow-down.png")}
+          source={require('../../../components/assets/arrow-down.png')}
           style={{
             transform: [
               {

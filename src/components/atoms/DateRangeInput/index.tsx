@@ -13,22 +13,24 @@ const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 interface DataRangeInputProps {
   isCreateTask?: boolean;
   value: string;
-  onChageDate: (e: string | ChangeEvent<any>) => void
+  onChageDate: (e: string | ChangeEvent<any>) => void;
 }
 
-export function DateRangeInput({isCreateTask=false, value, onChageDate} : DataRangeInputProps) {
+export function DateRangeInput({ isCreateTask = false, value, onChageDate }: DataRangeInputProps) {
   const [dateRange, setDateRange] = useState<DateRange>({
     startDate: null,
-    endDate: null
+    endDate: null,
   });
   useEffect(() => {
-    function updateValue(){
-      if (dateRange.startDate && dateRange.endDate){
-        onChageDate(formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate }))
+    function updateValue() {
+      if (dateRange.startDate && dateRange.endDate) {
+        onChageDate(
+          formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate }),
+        );
       }
     }
-    updateValue()
-  },[dateRange])
+    updateValue();
+  }, [dateRange]);
 
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [calendarContainerLayout, setCalendarContainerLayout] = useState({
@@ -56,15 +58,15 @@ export function DateRangeInput({isCreateTask=false, value, onChageDate} : DataRa
 
     if (!dateRange.startDate && !dateRange.endDate)
       return setDateRange({ startDate: selectedDate, endDate: selectedDate });
-    
-    if (dateRange.startDate){
+
+    if (dateRange.startDate) {
       if (selectedDate < dateRange.startDate)
         return setDateRange((previous) => ({
           startDate: selectedDate,
           endDate: previous.startDate,
         }));
     }
-    if (dateRange.startDate){
+    if (dateRange.startDate) {
       if (selectedDate > dateRange.startDate && !equalToEndDate)
         return setDateRange((previous) => ({
           startDate: previous.startDate,
@@ -118,9 +120,7 @@ export function DateRangeInput({isCreateTask=false, value, onChageDate} : DataRa
 
   return (
     <View style={styles.container}>
-      {isCreateTask&& 
-        <Label>Período de início e conclusão da tarefa</Label>
-      }
+      {isCreateTask && <Label>Período de início e conclusão da tarefa</Label>}
       <DateButton onPress={() => setCalendarVisible(!calendarVisible)} isCreateTask={isCreateTask}>
         {dateRange.endDate && dateRange.startDate ? (
           <DateText>

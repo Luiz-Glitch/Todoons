@@ -1,4 +1,4 @@
 export const storageKeysTasks = {
-    all: 'tasks' as const,
-    item: (id: string) => id,
-  };
+  all: 'tasks' as const,
+  item: (id: string) => id,
+};

@@ -10,13 +10,10 @@ import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMainContext } from '../../hooks/useMainContext';
 
-type createScreenProp = NativeStackNavigationProp<
-  RootStackParamsList,
-  'CreateTask'
->
+type createScreenProp = NativeStackNavigationProp<RootStackParamsList, 'CreateTask'>;
 export function HomeScreen() {
   const navigation = useNavigation<createScreenProp>();
-  const { tasks } = useMainContext()
+  const { tasks } = useMainContext();
 
   return (
     <Container>
@@ -24,13 +21,13 @@ export function HomeScreen() {
         <ContainerHeaderCalendar>
           <Header />
           <Calendar />
-          <SearchBar placeholder='Search Tasks'/>
+          <SearchBar placeholder="Search Tasks" />
         </ContainerHeaderCalendar>
         <ContainerTask>
-          {tasks.map((task) =>
+          {tasks.map((task) => (
             <Task key={task.id} task={task} />
-          )}
-        </ContainerTask>  
+          ))}
+        </ContainerTask>
       </ScrollView>
       <ContainerButton>
         <Button
