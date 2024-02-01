@@ -71,9 +71,6 @@ export function CreateTaskScreen() {
           <ContainerInputDate>
             <DateRangeInput isCreateTask={true}/>
           </ContainerInputDate>
-          <ContainerInputDate>
-            <DateRangeInput isCreateTask={true}/>
-          </ContainerInputDate>
 
           <Toggle/>
           <Priority/>

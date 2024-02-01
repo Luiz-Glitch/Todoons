@@ -7,9 +7,10 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  ${theme.texts.bodyP2Bold}
-  color: ${theme.colors.gray[600]};
-`;
+  font-size: ${({theme}) => theme.texts.bodyP3Regular.fontSize}px;
+  font-weight: 500;
+  margin-bottom: 8px;
+`
 
 export const Input = styled.TextInput<{
   isCreateTask: boolean
@@ -24,6 +25,6 @@ export const Input = styled.TextInput<{
 `;
 
 export const TextError = styled.Text`
-    color: ${({theme}) => theme.colors.error[500]};
-    font-size: 16px;
+  color: ${({theme}) => theme.colors.error[500]};
+  font-size: 16px;
 `

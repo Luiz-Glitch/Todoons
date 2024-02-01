@@ -109,7 +109,7 @@ export function DateRangeInput({isCreateTask=false} : {isCreateTask:boolean}) {
   return (
     <View style={styles.container}>
       {isCreateTask&& 
-        <Label>Período de início da tarefa</Label>
+        <Label>Período de início  e conclusão da tarefa</Label>
       }
       <DateButton onPress={() => setCalendarVisible(!calendarVisible)} isCreateTask={isCreateTask}>
         {dateRange.endDate && dateRange.startDate ? (
