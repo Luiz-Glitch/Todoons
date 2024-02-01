@@ -20,7 +20,11 @@ export function TitleInput({
 
   return (
     <Container>
-      <Input placeholder={placeholder} onTextInput={(text) => field.onChange(text)} {...props}>
+      <Input
+        placeholder={placeholder}
+        onTextInput={(text) => field.onChange(text)}
+        {...props}
+        onBlur={field.onBlur}>
         {field.value}
       </Input>
       {fieldState.error && <ErrorText>{fieldState.error.message}</ErrorText>}

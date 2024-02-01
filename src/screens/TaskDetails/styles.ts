@@ -20,11 +20,6 @@ export const NavBar = styled.View`
   justify-content: space-between;
 `;
 
-export const Title = styled.Text`
-  ${theme.texts.headingH1Bold};
-  color: ${theme.colors.gray[900]};
-`;
-
 export const Content = styled.View`
   display: flex;
   gap: 20px;
