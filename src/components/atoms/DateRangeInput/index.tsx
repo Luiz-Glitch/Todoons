@@ -1,24 +1,36 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 
-import { DateButton, DateText, Overlay, Placeholder } from './styles';
+import { DateButton, DateText, Label, Overlay, Placeholder } from './styles';
+import { DateRange } from '../../../contexts/main';
 import theme from '../../../style/theme';
 import { formatDateRange } from '../../../utils/dateUtils';
 
 const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
-export interface dateRange {
-  startDate: Date | null;
-  endDate: Date | null;
+interface DataRangeInputProps {
+  isCreateTask?: boolean;
+  value: string;
+  onChageDate: (e: string | ChangeEvent<any>) => void;
 }
 
-export function DateRangeInput() {
-  const [dateRange, setDateRange] = useState<dateRange>({
+export function DateRangeInput({ isCreateTask = false, value, onChageDate }: DataRangeInputProps) {
+  const [dateRange, setDateRange] = useState<DateRange>({
     startDate: null,
     endDate: null,
   });
+  useEffect(() => {
+    function updateValue() {
+      if (dateRange.startDate && dateRange.endDate) {
+        onChageDate(
+          formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate }),
+        );
+      }
+    }
+    updateValue();
+  }, [dateRange]);
 
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [calendarContainerLayout, setCalendarContainerLayout] = useState({
@@ -47,17 +59,20 @@ export function DateRangeInput() {
     if (!dateRange.startDate && !dateRange.endDate)
       return setDateRange({ startDate: selectedDate, endDate: selectedDate });
 
-    if (selectedDate < dateRange.startDate)
-      return setDateRange((previous) => ({
-        startDate: selectedDate,
-        endDate: previous.startDate,
-      }));
-
-    if (selectedDate > dateRange.startDate && !equalToEndDate)
-      return setDateRange((previous) => ({
-        startDate: previous.startDate,
-        endDate: selectedDate,
-      }));
+    if (dateRange.startDate) {
+      if (selectedDate < dateRange.startDate)
+        return setDateRange((previous) => ({
+          startDate: selectedDate,
+          endDate: previous.startDate,
+        }));
+    }
+    if (dateRange.startDate) {
+      if (selectedDate > dateRange.startDate && !equalToEndDate)
+        return setDateRange((previous) => ({
+          startDate: previous.startDate,
+          endDate: selectedDate,
+        }));
+    }
 
     if (equalToStartDate && !equalToEndDate)
       return setDateRange((previous) => ({
@@ -105,7 +120,8 @@ export function DateRangeInput() {
 
   return (
     <View style={styles.container}>
-      <DateButton onPress={() => setCalendarVisible(!calendarVisible)}>
+      {isCreateTask && <Label>Período de início e conclusão da tarefa</Label>}
+      <DateButton onPress={() => setCalendarVisible(!calendarVisible)} isCreateTask={isCreateTask}>
         {dateRange.endDate && dateRange.startDate ? (
           <DateText>
             {formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate })}
@@ -154,7 +170,6 @@ export function DateRangeInput() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '100%',
     justifyContent: 'center',
   },
   calendarContainer: {

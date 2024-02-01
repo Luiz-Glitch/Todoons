@@ -1,74 +1,83 @@
-import { AntDesign, EvilIcons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { AntDesign, EvilIcons, Feather } from '@expo/vector-icons';
+import React, { useMemo, useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import {
+  Container,
+  ContainerDeleteTask,
   Check,
   CicleOff,
   CicleOn,
-  Container,
+  ContainerMain,
   ContainerData,
   ContainerIcon,
   ContainerText,
   TextCategory,
   TextDate,
   TextIcon,
+  DateContainer,
 } from './style';
+import { TaskProps } from '../../../contexts/main';
+import { useMainContext } from '../../../hooks/useMainContext';
 
-interface TaskProps {
-  id: number;
-  title: string;
-  categories: [];
-  date_final: Date;
-  date_initial: Date;
-  checked?: boolean;
-}
-
-interface text {
-  name: string;
-}
-
-export function Task({ name }: text) {
+export function Task({ task }: { task: TaskProps }) {
+  const { deleteTask } = useMainContext();
   const [checked, setChecked] = useState(false);
-  if (name.length > 22) {
-    let msg = '';
-    for (let i = 0; i < 22; i++) {
-      msg += name[i];
-    }
-    name = msg + '...';
-  }
 
-  const handleChecked = () => {
-    setChecked(!checked);
-  };
+  const displayedTitleText = useMemo(() => {
+    if (task.title.length > 22) {
+      let text = '';
+      for (let i = 0; i < 22; i++) {
+        text += task.title[i];
+      }
+      text += '...';
+      return text;
+    }
+    return task.title;
+  }, [task.title]);
 
   return (
-    <Container>
-      <TouchableOpacity />
-      <Check onPress={()=>{handleChecked()}}>
-        {checked ? (
-          <CicleOn>
-            <AntDesign name="check" size={14} color="green" />
-          </CicleOn>
-        ) : (
-          <CicleOff />
-        )}
-      </Check>
-      <ContainerData>
-        <ContainerText>
-          <Text>{name}</Text>
-          <ContainerIcon>
-            <TextCategory>Categoria-1</TextCategory>
-            <TextIcon>
-              <AntDesign name="tago" size={16} color="white" /> + 3
-            </TextIcon>
-          </ContainerIcon>
-        </ContainerText>
-        <TextDate>
-          <EvilIcons name="calendar" size={14} color="black" />
-          20/03
-        </TextDate>
-      </ContainerData>
-    </Container>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Container
+        renderRightActions={() => {
+          return (
+            <ContainerDeleteTask>
+              <Feather name="trash" size={24} color="white" />
+            </ContainerDeleteTask>
+          );
+        }}
+        onSwipeableOpen={() => deleteTask(task)}
+        overshootRight={false}
+        friction={1}>
+        <ContainerMain>
+          <TouchableOpacity />
+          <Check onPress={() => setChecked(!checked)}>
+            {checked ? (
+              <CicleOn>
+                <AntDesign name="check" size={14} color="green" />
+              </CicleOn>
+            ) : (
+              <CicleOff />
+            )}
+          </Check>
+          <ContainerData>
+            <ContainerText>
+              <Text>{displayedTitleText}</Text>
+              <ContainerIcon>
+                <TextCategory>Categoria-1</TextCategory>
+                <TextIcon>
+                  <AntDesign name="tago" size={16} color="white" /> + 3
+                </TextIcon>
+              </ContainerIcon>
+            </ContainerText>
+            <DateContainer>
+              <EvilIcons name="calendar" size={14} color="black" />
+              <TextDate>{task.term}</TextDate>
+            </DateContainer>
+          </ContainerData>
+        </ContainerMain>
+      </Container>
+    </GestureHandlerRootView>
   );
 }
