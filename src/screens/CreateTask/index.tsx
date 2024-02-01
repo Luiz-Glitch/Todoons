@@ -12,7 +12,8 @@ import { useMainContext } from '../../hooks/useMainContext';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
-import { useFormik } from 'formik'; 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 
 
@@ -20,6 +21,11 @@ type createScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
   'Home'
 >
+
+const Schema = Yup.object({
+  title: Yup.string().max(10, 'O máximo  de caractéres foi atingido').required('O campo é obrigatório'),
+  description: Yup.string().max(5, 'O máximo  de caractéres foi atingido')
+})
 
 export function CreateTaskScreen() {
   const { createTask, tasks } = useMainContext()
@@ -40,7 +46,8 @@ export function CreateTaskScreen() {
       }
       createTask({id: id,...values})
       navigation.navigate('Home')
-    }
+    },
+    validationSchema: Schema
   })
 
   return (
@@ -48,9 +55,10 @@ export function CreateTaskScreen() {
       <KeyboardAvoidingView style={{padding:16}}>
         <Form>
           <InputField
-            label='Título'
+            label='Título*'
             onChangeText={form.handleChange('title')}
             value={form.values.title}
+            error={form.errors.title}
           />
 
           <MultilineTextInput
@@ -58,6 +66,7 @@ export function CreateTaskScreen() {
             isCreateTask={true}
             onChangeText={form.handleChange('description')}
             value={form.values.description}
+            error={form.errors.description}
           />
           <ContainerInputDate>
             <DateRangeInput isCreateTask={true}/>
@@ -74,7 +83,7 @@ export function CreateTaskScreen() {
         
       </KeyboardAvoidingView>
       <ContainerButton>
-        <Button label='Salvar' action={form.handleSubmit}/>
+        <Button label='Salvar' disabled={form.isValidating} action={form.handleSubmit}/>
       </ContainerButton>
     </Container>
   )

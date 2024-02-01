@@ -27,7 +27,7 @@ export function HomeScreen() {
           <SearchBar placeholder='Search Tasks'/>
         </ContainerHeaderCalendar>
         <ContainerTask>
-          {tasks.map((task) => 
+          {tasks.map((task) =>
             <Task key={task.id} task={task} />
           )}
         </ContainerTask>  
@@ -36,8 +36,6 @@ export function HomeScreen() {
         <Button
           label="Criar tarefa"
           action={() => {
-            // AsyncStorage.removeItem('tasks')
-            console.log(tasks)
             navigation.navigate('CreateTask');
           }}
         />

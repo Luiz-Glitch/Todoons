@@ -1,12 +1,13 @@
-import { Container, Input, Label } from './styles';
+import { Container, Input, Label, TextError } from './styles';
 import { TextInputProps } from 'react-native';
 
 interface MultilineTextInputProps extends TextInputProps{
   label: string;
   isCreateTask?: boolean;
+  error: string | undefined;
 }
 
-export function MultilineTextInput({ label, isCreateTask=false, ...props }: MultilineTextInputProps) {
+export function MultilineTextInput({ label, error, isCreateTask=false, ...props }: MultilineTextInputProps) {
   return (
     <Container>
       <Label>{label}</Label>
@@ -19,6 +20,7 @@ export function MultilineTextInput({ label, isCreateTask=false, ...props }: Mult
         textAlignVertical='top'
         {...props}
       />
+      {error && <TextError>{error}</TextError>}
     </Container>
   );
 }

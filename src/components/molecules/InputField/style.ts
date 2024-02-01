@@ -7,3 +7,8 @@ export const Label = styled.Text`
     font-weight: 500;
     margin-bottom: 8px;
 `
+
+export const TextError = styled.Text`
+    color: ${({theme}) => theme.colors.error[500]};
+    font-size: 16px;
+`

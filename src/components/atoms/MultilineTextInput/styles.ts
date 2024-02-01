@@ -22,3 +22,8 @@ export const Input = styled.TextInput<{
   border-radius: 8px;
   padding: 8px;
 `;
+
+export const TextError = styled.Text`
+    color: ${({theme}) => theme.colors.error[500]};
+    font-size: 16px;
+`
