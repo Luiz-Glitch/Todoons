@@ -1,24 +1,31 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions, Text } from 'react-native';
+import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 
 import { DateButton, DateText, Label, Overlay, Placeholder } from './styles';
 import theme from '../../../style/theme';
 import { formatDateRange } from '../../../utils/dateUtils';
+import { DateRange } from '../../../contexts/main';
 
 const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
-export interface dateRange {
-  startDate: Date | null;
-  endDate: Date | null;
+interface DataRangeInputProps {
+  isCreateTask?: boolean;
+  value: DateRange;
+  onChageDate: (e: string | ChangeEvent<any>) => void
 }
 
-export function DateRangeInput({isCreateTask=false} : {isCreateTask:boolean}) {
-  const [dateRange, setDateRange] = useState<dateRange>({
-    startDate: null,
-    endDate: null,
-  });
+export function DateRangeInput({isCreateTask=false, value, onChageDate} : DataRangeInputProps) {
+  const [dateRange, setDateRange] = useState<DateRange>(value);
+  useEffect(() => {
+    function updateValue(){
+      if (dateRange.startDate && dateRange.endDate){
+        onChageDate(formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate }))
+      }
+    }
+    updateValue()
+  },[dateRange])
 
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [calendarContainerLayout, setCalendarContainerLayout] = useState({
@@ -109,7 +116,7 @@ export function DateRangeInput({isCreateTask=false} : {isCreateTask:boolean}) {
   return (
     <View style={styles.container}>
       {isCreateTask&& 
-        <Label>Período de início  e conclusão da tarefa</Label>
+        <Label>Período de início e conclusão da tarefa</Label>
       }
       <DateButton onPress={() => setCalendarVisible(!calendarVisible)} isCreateTask={isCreateTask}>
         {dateRange.endDate && dateRange.startDate ? (

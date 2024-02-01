@@ -14,6 +14,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { DateRange } from '../../contexts/main';
 
 
 
@@ -35,7 +36,11 @@ export function CreateTaskScreen() {
   const form = useFormik({
     initialValues: {
       title:'',
-      description: ''
+      description: '',
+      term: {
+        startDate: null,
+        endDate: null,
+      },
     },
     onSubmit: (values) => {
       let id = 0
@@ -69,7 +74,11 @@ export function CreateTaskScreen() {
             error={form.errors.description}
           />
           <ContainerInputDate>
-            <DateRangeInput isCreateTask={true}/>
+            <DateRangeInput
+              isCreateTask={true}
+              value={form.values.term}
+              onChageDate={form.handleChange('term')}
+            />
           </ContainerInputDate>
 
           <Toggle/>

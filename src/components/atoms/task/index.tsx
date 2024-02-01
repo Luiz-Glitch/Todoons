@@ -73,7 +73,7 @@ export function Task({task}: {task:TaskProps}) {
             </ContainerText>
             <TextDate>
               <EvilIcons name="calendar" size={14} color="black" />
-              20/03
+              {task.term as unknown as string}
             </TextDate>
           </ContainerData>
         </ContainerMain>

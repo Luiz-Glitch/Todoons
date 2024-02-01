@@ -2,13 +2,17 @@ import React, { createContext, useState, ReactNode, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storageKeysTasks } from "../hooks/storageKeys";
 
+export interface DateRange {
+    startDate: Date | null;
+    endDate: Date | null;
+  }
+
 export interface TaskProps {
     id: number;
     title: string;
     description?: string;
     categories?: [];
-    date_final?: Date;
-    date_initial?: Date;
+    term?: DateRange;
     emphasis?: boolean;
     priority?: string;
     checked?: boolean;
@@ -71,7 +75,7 @@ export default function MainProvider({ children } : MainProviderProps){
     };
 
     return (
-        <MainContext.Provider value={{tasks,createTask, deleteTask, emphasis,toggleEmphasis}}>
+        <MainContext.Provider value={{tasks,createTask, deleteTask}}>
             {children}
         </MainContext.Provider>
     )
