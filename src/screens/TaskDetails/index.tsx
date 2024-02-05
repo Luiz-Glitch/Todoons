@@ -13,6 +13,9 @@ import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { TitleInput } from '../../components/TitleInput';
 import { IconButton } from '../../components/atoms/iconButton';
 import { TaskPriority, TaskStatus } from '../../utils/taskOptions';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamsList } from '../../navigators/RootStackParams';
 
 const schema = Yup.object().shape({
   title: Yup.string().required('Este campo é obrigatório'),
@@ -26,7 +29,11 @@ const schema = Yup.object().shape({
   description: Yup.string(),
 });
 
+type homeScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
+
 export function TaskDetailsScreen() {
+  const navigation = useNavigation<homeScreenProp>()
+
   const { control, handleSubmit } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -35,7 +42,9 @@ export function TaskDetailsScreen() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    navigation.navigate('Home')
+  };
 
   return (
     <Container>
@@ -46,6 +55,7 @@ export function TaskDetailsScreen() {
             size={20}
             Icon={null}
             onPress={() => {
+              navigation.navigate('Home')
               handleSubmit(onSubmit);
             }}
           />

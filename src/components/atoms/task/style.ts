@@ -14,6 +14,14 @@ export const ContainerDeleteTask = styled.View`
   padding-right: 16px;
 `;
 
+export const ContainerDetailScreen = styled.View`
+  background-color: ${({ theme }) => theme.colors.primary[200]};
+  border-radius: 8px;
+  justify-content: center;
+  width: 100%;
+  padding-left: 16px;
+`;
+
 export const ContainerMain = styled.View`
   display: flex;
   background-color: #fff;

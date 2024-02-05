@@ -1,14 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useFormik } from 'formik';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Keyboard } from 'react-native';
 import * as Yup from 'yup';
 
 import { Container, Form, ContainerInputDate, ContainerButton } from './style';
-import { name } from '../../../babel.config';
 import { DateRangeInput } from '../../components/DateRangeInput';
 import { MultilineTextInput } from '../../components/atoms/MultilineTextInput';
 import { Toggle } from '../../components/atoms/Toggle';
@@ -18,7 +16,6 @@ import { InputField } from '../../components/molecules/InputField';
 import { Priority } from '../../components/molecules/Priority';
 import { useMainContext } from '../../hooks/useMainContext';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
-import { TaskStatus } from '../../utils/taskOptions';
 
 type createScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
 

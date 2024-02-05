@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 
 import { CreateTaskScreen } from '../screens/CreateTask';
 import { HomeScreen } from '../screens/Home';
+import { TaskDetailsScreen } from '../screens/TaskDetails';
 
 const TitleComponent = styled.Text`
   margin-top: 40px;
@@ -41,6 +42,11 @@ export function Routes() {
           options={{
             headerTitle: (props) => <Title name="Criar tarefa" {...props} />,
           }}
+        />
+        <Screen
+          name='DetailTask'
+          component={TaskDetailsScreen}
+          options={{ headerShown: false }}
         />
       </Navigator>
     </NavigationContainer>
