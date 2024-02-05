@@ -1,6 +1,22 @@
+import { Swipeable } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled(Swipeable)`
+  border-radius: 8px;
+`;
+
+export const ContainerDeleteTask = styled.View`
+  background-color: ${({ theme }) => theme.colors.error[500]};
+  border-radius: 8px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding-right: 16px;
+`;
+
+export const ContainerMain = styled.View`
+  display: flex;
+  background-color: #fff;
   flex-direction: row;
   background-color: white;
   padding: 8px;
@@ -8,6 +24,7 @@ export const Container = styled.View`
 `;
 
 export const ContainerData = styled.View`
+  gap: 4px;
   flex-basis: 90%;
 `;
 
@@ -34,6 +51,12 @@ export const TextIcon = styled.Text`
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray[50]};
   text-align: center;
+`;
+
+export const DateContainer = styled.View`
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
 `;
 
 export const TextDate = styled.Text`

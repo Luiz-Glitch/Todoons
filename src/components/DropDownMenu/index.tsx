@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Control, useController } from 'react-hook-form';
 import {
   TouchableOpacity,
   Modal,
@@ -17,20 +18,32 @@ import {
   OptionText,
   Placeholder,
 } from './styles';
-import theme from '../../../style/theme';
-import { Option } from '../../../utils/taskOptions';
+import theme from '../../style/theme';
+import { Option } from '../../utils/taskOptions';
 
 interface DropDownMenuProps {
+  name: string;
+  control: Control<any>;
+  default?: any;
   placeholder?: string;
-  data: Option[];
+  options: Option[];
 }
 
 export function DropDownMenu({
+  name,
+  control,
   placeholder = 'Selecione uma opção',
-  data,
+  options,
 }: DropDownMenuProps): React.ReactElement {
+  const { field } = useController({ name, control });
+
+  const findSelectedOption = useCallback(() => {
+    const option = options.find((option) => option.value === field.value);
+    return option ?? null;
+  }, [field.value, options]);
+
   const [isVisible, setIsVisible] = useState(false);
-  const [selected, setSelected] = useState<Option | null>(null);
+  const [selected, setSelected] = useState<Option | null>(() => findSelectedOption());
   const [dropdownButtonLayout, setDropdownButtonLayout] = useState({
     x: 0,
     y: 0,
@@ -49,6 +62,15 @@ export function DropDownMenu({
     });
   };
 
+  const handleOptionPress = useCallback(
+    (item: Option) => {
+      setSelected(item);
+      field.onChange(item.value);
+      setIsVisible(false);
+    },
+    [field],
+  );
+
   useEffect(() => {
     Animated.timing(rotation, {
       toValue: isVisible ? 1 : 0,
@@ -65,7 +87,7 @@ export function DropDownMenu({
         onPress={() => setIsVisible(!isVisible)}
         onLayout={onButtonLayout}
         activeOpacity={0.2}>
-        {selected ? (
+        {selected && field.value ? (
           <Label color={selected?.color}>{selected.label}</Label>
         ) : (
           <Placeholder>{placeholder}</Placeholder>
@@ -96,14 +118,10 @@ export function DropDownMenu({
           relativeWidth={dropdownButtonLayout.pageX}
           width={dropdownButtonLayout.width}>
           <FlatList
-            data={data}
+            data={options}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setSelected(item);
-                  setIsVisible(false);
-                }}>
+              <TouchableOpacity onPress={() => handleOptionPress(item)}>
                 <OptionText>{item.label}</OptionText>
               </TouchableOpacity>
             )}
@@ -117,11 +135,10 @@ export function DropDownMenu({
 
 const styles = StyleSheet.create({
   dropdownButton: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    padding: 8,
     backgroundColor: `${theme.colors.primary[50]}`,
   },
 });
