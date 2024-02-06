@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
 import * as Yup from 'yup';
 
+import { Toggle } from '../../components/atoms/Toggle';
+import { Priority } from '../../components/molecules/Priority';
+import { Categories } from '../../components/molecules/Categories';
 import { Attribute } from './Components/Attribute';
 import { AttributesContainer, Container, Content, Header, NavBar } from './styles';
 import { DateRangeInput } from '../../components/DateRangeInput';
@@ -86,6 +89,9 @@ export function TaskDetailsScreen() {
               />
             )}
           />
+            <Toggle name="emphasis" control={control} />
+            <Priority name="priority" control={control} />
+            <Categories/>
           <Attribute
             title="Categoria"
             Icon={<Image source={require('./assets/tag-icon.svg')} style={styles.icon} />}
