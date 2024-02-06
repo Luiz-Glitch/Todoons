@@ -43,11 +43,7 @@ export function Routes() {
             headerTitle: (props) => <Title name="Criar tarefa" {...props} />,
           }}
         />
-        <Screen
-          name='DetailTask'
-          component={TaskDetailsScreen}
-          options={{ headerShown: false }}
-        />
+        <Screen name="DetailTask" component={TaskDetailsScreen} options={{ headerShown: false }} />
       </Navigator>
     </NavigationContainer>
   );

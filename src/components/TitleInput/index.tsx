@@ -3,6 +3,7 @@ import { Control, useController } from 'react-hook-form';
 import { TextInputProps } from 'react-native';
 
 import { Container, ErrorText, Input } from './styles';
+import theme from '../../style/theme';
 
 interface TitleInputProps extends TextInputProps {
   name: string;
@@ -22,11 +23,13 @@ export function TitleInput({
     <Container>
       <Input
         placeholder={placeholder}
-        onTextInput={(text) => field.onChange(text)}
+        onBlur={field.onBlur}
+        placeholderTextColor={theme.colors.gray[300]}
+        multiline
+        value={field.value}
+        onChangeText={field.onChange}
         {...props}
-        onBlur={field.onBlur}>
-        {field.value}
-      </Input>
+      />
       {fieldState.error && <ErrorText>{fieldState.error.message}</ErrorText>}
     </Container>
   );

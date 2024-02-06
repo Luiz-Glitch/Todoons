@@ -1,32 +1,42 @@
+import { error } from 'console';
 import { Control, useController } from 'react-hook-form';
+import { TextInputProps } from 'react-native';
 
-import { Container, Input, Label } from './styles';
+import { Container, Input, Label, TextError } from './styles';
+import theme from '../../style/theme';
 
 interface MultilineTextInputProps {
-  label: string;
   name: string;
   control: Control<any>;
+  label: string;
+  isCreateTask?: boolean;
   placeholder?: string;
 }
 
 export function MultilineTextInput({
-  label,
   name,
   control,
-  placeholder = 'Digite um texto aqui',
+  label,
+  isCreateTask = false,
+  placeholder = 'Digite aqui',
 }: MultilineTextInputProps) {
-  const { field } = useController({ name, control });
+  const { field, fieldState } = useController({ name, control });
 
   return (
     <Container>
-      <Label>{label}</Label>
+      <Label isCreateTask={isCreateTask}>{label}</Label>
 
       <Input
         multiline
         numberOfLines={4}
         placeholder={placeholder}
         onChangeText={(text) => field.onChange(text)}
+        onBlur={field.onBlur}
+        isCreateTask={isCreateTask}
+        placeholderTextColor={!isCreateTask ? theme.colors.gray[300] : ''}
+        textAlignVertical="top"
       />
+      {fieldState.error && <TextError>{fieldState.error.message}</TextError>}
     </Container>
   );
 }

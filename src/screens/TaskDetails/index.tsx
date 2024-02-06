@@ -1,4 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Image } from 'expo-image';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -12,10 +14,8 @@ import { DropDownMenu } from '../../components/DropDownMenu';
 import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { TitleInput } from '../../components/TitleInput';
 import { IconButton } from '../../components/atoms/iconButton';
-import { TaskPriority, TaskStatus } from '../../utils/taskOptions';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
+import { TaskPriority, TaskStatus } from '../../utils/taskOptions';
 
 const schema = Yup.object().shape({
   title: Yup.string().required('Este campo é obrigatório'),
@@ -23,8 +23,8 @@ const schema = Yup.object().shape({
   priority: Yup.string(),
   category: Yup.array().of(Yup.string()),
   dates: Yup.object().shape({
-    startDate: Yup.string(),
-    endDate: Yup.string(),
+    startDate: Yup.string().nullable(),
+    endDate: Yup.string().nullable(),
   }),
   description: Yup.string(),
 });
@@ -32,7 +32,7 @@ const schema = Yup.object().shape({
 type homeScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
 
 export function TaskDetailsScreen() {
-  const navigation = useNavigation<homeScreenProp>()
+  const navigation = useNavigation<homeScreenProp>();
 
   const { control, handleSubmit } = useForm({
     mode: 'onBlur',
@@ -43,7 +43,7 @@ export function TaskDetailsScreen() {
   });
 
   const onSubmit = (data) => {
-    navigation.navigate('Home')
+    navigation.navigate('Home');
   };
 
   return (
@@ -55,7 +55,7 @@ export function TaskDetailsScreen() {
             size={20}
             Icon={null}
             onPress={() => {
-              navigation.navigate('Home')
+              navigation.navigate('Home');
               handleSubmit(onSubmit);
             }}
           />

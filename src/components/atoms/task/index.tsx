@@ -58,7 +58,7 @@ export function Task({ task }: { task: TaskProps }) {
             </ContainerDeleteTask>
           );
         }}
-        renderLeftActions={() => 
+        renderLeftActions={() =>
         <ContainerDetailScreen>
           <Feather name="edit" size={24} color="black" />
         </ContainerDetailScreen>}

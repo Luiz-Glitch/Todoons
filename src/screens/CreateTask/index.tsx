@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 
 import { Container, Form, ContainerInputDate, ContainerButton } from './style';
 import { DateRangeInput } from '../../components/DateRangeInput';
-import { MultilineTextInput } from '../../components/atoms/MultilineTextInput';
+import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { Toggle } from '../../components/atoms/Toggle';
 import { Button } from '../../components/atoms/button';
 import { Categories } from '../../components/molecules/Categories';
@@ -24,8 +24,8 @@ const schema = Yup.object().shape({
   priority: Yup.string(),
   category: Yup.array().of(Yup.string()),
   dates: Yup.object().shape({
-    startDate: Yup.string(),
-    endDate: Yup.string(),
+    startDate: Yup.string().nullable(),
+    endDate: Yup.string().nullable(),
   }),
   description: Yup.string(),
 });
@@ -57,7 +57,13 @@ export function CreateTaskScreen() {
         <Form>
           <InputField name="title" control={control} label="Título" />
 
-          <MultilineTextInput name="description" control={control} label="Descrição" isCreateTask />
+          <MultilineTextInput
+            name="description"
+            control={control}
+            label="Descrição"
+            isCreateTask
+            placeholder="Digite uma descrição aqui"
+          />
           <ContainerInputDate>
             <DateRangeInput name="dates" control={control} isCreateTask />
           </ContainerInputDate>
