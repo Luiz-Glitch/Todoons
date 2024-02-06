@@ -23,7 +23,7 @@ type createScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
 const schema = Yup.object().shape({
   title: Yup.string().required('Este campo é obrigatório'),
   priority: Yup.string(),
-  category: Yup.array().of(Yup.string()),
+  categories: Yup.array().of(Yup.string()),
   dates: Yup.object().shape({
     startDate: Yup.string().nullable(),
     endDate: Yup.string().nullable(),

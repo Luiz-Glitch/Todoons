@@ -8,17 +8,20 @@ import { Container, Titulo, ContainerGeral } from './style';
 interface ToggleProps {
   name: string;
   control: Control<any>;
+  isCreateTask?: boolean;
 }
 
-export const Toggle = ({ name, control }: ToggleProps) => {
+export const Toggle = ({ name, control, isCreateTask = true }: ToggleProps) => {
   const { field } = useController({ name, control });
 
   return (
     <ContainerGeral>
-      <Container>
-        <AntDesign name="pushpino" size={24} color="gray" />
-        <Titulo>Destaque</Titulo>
-      </Container>
+      {isCreateTask && (
+        <Container>
+          <AntDesign name="pushpino" size={24} color="gray" />
+          <Titulo>Destaque</Titulo>
+        </Container>
+      )}
       <Switch onValueChange={() => field.onChange(!field.value)} value={field.value} />
     </ContainerGeral>
   );

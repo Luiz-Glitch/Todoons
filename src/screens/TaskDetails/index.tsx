@@ -12,6 +12,7 @@ import { DateRangeInput } from '../../components/DateRangeInput';
 import { DropDownMenu } from '../../components/DropDownMenu';
 import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { TitleInput } from '../../components/TitleInput';
+import { Toggle } from '../../components/atoms/Toggle';
 import { IconButton } from '../../components/atoms/iconButton';
 import { useMainContext } from '../../hooks/useMainContext';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
@@ -89,7 +90,7 @@ export function TaskDetailsScreen({ navigation, route }: TaskDetailsScreenProps)
           <Attribute
             title="Destaque"
             Icon={<Image source={require('./assets/pin-icon.svg')} style={styles.icon} />}
-            ValueComponent={() => <View style={{ flex: 1, backgroundColor: '#70F', padding: 8 }} />}
+            ValueComponent={() => <Toggle name="emphasis" control={control} isCreateTask={false} />}
           />
           <Attribute
             title="Prioridade"
