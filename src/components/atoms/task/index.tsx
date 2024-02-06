@@ -64,7 +64,7 @@ export function Task({ task }: { task: TaskProps }) {
         </ContainerDetailScreen>}
         onSwipeableOpen={(direction) => {
           if (direction === 'left'){
-            navigation.navigate('DetailTask')
+            navigation.navigate('DetailTask', { taskID: task.id })
           } else {
             deleteTask(task);
           }

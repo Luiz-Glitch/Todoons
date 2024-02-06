@@ -33,7 +33,7 @@ export function MultilineTextInput({
         onChangeText={(text) => field.onChange(text)}
         onBlur={field.onBlur}
         isCreateTask={isCreateTask}
-        placeholderTextColor={!isCreateTask ? theme.colors.gray[300] : ''}
+        placeholderTextColor={!isCreateTask ? theme.colors.gray[300] : 'gray'}
         textAlignVertical="top"
       />
       {fieldState.error && <TextError>{fieldState.error.message}</TextError>}

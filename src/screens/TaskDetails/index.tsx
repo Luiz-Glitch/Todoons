@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Image } from 'expo-image';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,6 +13,7 @@ import { DropDownMenu } from '../../components/DropDownMenu';
 import { MultilineTextInput } from '../../components/MultilineTextInput';
 import { TitleInput } from '../../components/TitleInput';
 import { IconButton } from '../../components/atoms/iconButton';
+import { useMainContext } from '../../hooks/useMainContext';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
 import { TaskPriority, TaskStatus } from '../../utils/taskOptions';
 
@@ -21,29 +21,39 @@ const schema = Yup.object().shape({
   title: Yup.string().required('Este campo é obrigatório'),
   status: Yup.string().required('Este campo é obrigatório'),
   priority: Yup.string(),
-  category: Yup.array().of(Yup.string()),
+  emphasis: Yup.boolean(),
+  categories: Yup.array().of(Yup.string()),
   dates: Yup.object().shape({
-    startDate: Yup.string().nullable(),
-    endDate: Yup.string().nullable(),
+    startDate: Yup.date().nullable(),
+    endDate: Yup.date().nullable(),
   }),
   description: Yup.string(),
 });
 
-type homeScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
+type TaskDetailsScreenProps = NativeStackScreenProps<RootStackParamsList, 'DetailTask'>;
 
-export function TaskDetailsScreen() {
-  const navigation = useNavigation<homeScreenProp>();
+export function TaskDetailsScreen({ navigation, route }: TaskDetailsScreenProps) {
+  const { taskID } = route.params;
+  const { updateTask, getTask } = useMainContext();
+
+  const task = getTask(taskID);
 
   const { control, handleSubmit } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      status: TaskStatus.TODO.value,
+      ...task,
+      status: task.status ?? TaskStatus.TODO.value,
+      dates: {
+        startDate: task.dates?.startDate ? new Date(task.dates.startDate) : null,
+        endDate: task.dates?.endDate ? new Date(task.dates.endDate) : null,
+      },
     },
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
-    navigation.navigate('Home');
+    updateTask({ id: task.id, ...data });
+    navigation.goBack();
   };
 
   return (
@@ -54,10 +64,7 @@ export function TaskDetailsScreen() {
             source={require('../../../assets/purple-left-arrow.svg')}
             size={20}
             Icon={null}
-            onPress={() => {
-              navigation.navigate('Home');
-              handleSubmit(onSubmit);
-            }}
+            onPress={handleSubmit(onSubmit)}
           />
           <IconButton
             source={require('../../../assets/purple-three-dots.svg')}

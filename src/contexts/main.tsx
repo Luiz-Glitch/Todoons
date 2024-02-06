@@ -11,10 +11,10 @@ export interface DateRange {
 export interface TaskProps {
   id: number;
   title: string;
-  status?: boolean;
+  status?: string;
   emphasis?: boolean;
   priority?: string;
-  categories?: [];
+  categories?: string[];
   dates?: DateRange;
   description?: string;
   check?: boolean;
@@ -23,6 +23,8 @@ export interface TaskProps {
 interface MainContextProps {
   tasks: TaskProps[];
   createTask: (task: TaskProps) => void;
+  getTask: (taskID: number) => TaskProps;
+  updateTask: (task: TaskProps) => void;
   deleteTask: (task: TaskProps) => void;
   checkTask: (task: TaskProps) => void;
 }
@@ -62,6 +64,15 @@ export default function MainProvider({ children }: MainProviderProps) {
     setTasks(tasksStorage);
   }
 
+  function getTask(taskID: number) {
+    const index = tasks.findIndex((task) => task.id === taskID);
+    return tasks[index];
+  }
+
+  function updateTask(updatedTask: TaskProps) {
+    setTasks((tasks) => tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
+  }
+
   function deleteTask(task: TaskProps) {
     const index = tasks.indexOf(task);
     const newValues = tasks;
@@ -70,13 +81,13 @@ export default function MainProvider({ children }: MainProviderProps) {
   }
 
   function checkTask(task: TaskProps) {
-    const index = tasks.indexOf(task)
-    tasks[index].check = !tasks[index].check
-    setTasks([...tasks])
+    const index = tasks.indexOf(task);
+    tasks[index].check = !tasks[index].check;
+    setTasks([...tasks]);
   }
 
   return (
-    <MainContext.Provider value={{ tasks, createTask, deleteTask, checkTask }}>
+    <MainContext.Provider value={{ tasks, createTask, getTask, updateTask, deleteTask, checkTask }}>
       {children}
     </MainContext.Provider>
   );

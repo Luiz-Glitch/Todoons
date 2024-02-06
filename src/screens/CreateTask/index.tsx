@@ -16,6 +16,7 @@ import { InputField } from '../../components/molecules/InputField';
 import { Priority } from '../../components/molecules/Priority';
 import { useMainContext } from '../../hooks/useMainContext';
 import { RootStackParamsList } from '../../navigators/RootStackParams';
+import { TaskStatus } from '../../utils/taskOptions';
 
 type createScreenProp = NativeStackNavigationProp<RootStackParamsList, 'Home'>;
 
@@ -41,13 +42,9 @@ export function CreateTaskScreen() {
   });
 
   const onSubmit = (data) => {
-    let id = 0;
-    for (const task of tasks) {
-      if (task.id >= id) {
-        id = task.id + 1;
-      }
-    }
-    createTask({ id, ...data });
+    const id = tasks.length;
+    const status = TaskStatus.TODO.value;
+    createTask({ id, status, ...data });
     navigation.navigate('Home');
   };
 
