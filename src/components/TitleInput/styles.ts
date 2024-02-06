@@ -9,6 +9,7 @@ export const Container = styled.View`
 export const Input = styled.TextInput`
   ${theme.texts.headingH1Bold};
   color: ${theme.colors.gray[900]};
+  max-height: 112px;
 `;
 
 export const ErrorText = styled.Text`
