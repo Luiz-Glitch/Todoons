@@ -42,7 +42,13 @@ export function CreateTaskScreen() {
   });
 
   const onSubmit = (data) => {
-    const id = tasks.length;
+
+    let id = 0
+    for (let task of tasks){
+      if (task.id >= id){
+        id = task.id + 1
+      }
+    }
     const status = TaskStatus.TODO.value;
     createTask({ id, status, ...data });
     navigation.navigate('Home');

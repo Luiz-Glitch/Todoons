@@ -28,6 +28,7 @@ export function MultilineTextInput({
 
       <Input
         multiline
+        value={field.value}
         numberOfLines={4}
         placeholder={placeholder}
         onChangeText={(text) => field.onChange(text)}
