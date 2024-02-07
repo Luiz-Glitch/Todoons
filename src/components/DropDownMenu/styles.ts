@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
 
-import theme from '../../../style/theme';
+import theme from '../../style/theme';
 
 export const Container = styled.View<{ showShadow: boolean }>`
   position: relative;
   width: 100%;
-  height: 100%;
+  display: flex;
   align-self: center;
   justify-content: center;
   background-color: ${theme.colors.primary[50]};

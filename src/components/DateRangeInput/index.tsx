@@ -1,36 +1,31 @@
-import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Control, useController } from 'react-hook-form';
 import { StyleSheet, Modal, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 
 import { DateButton, DateText, Label, Overlay, Placeholder } from './styles';
-import { DateRange } from '../../../contexts/main';
-import theme from '../../../style/theme';
-import { formatDateRange } from '../../../utils/dateUtils';
+import theme from '../..//style/theme';
+import { formatDateRange } from '../..//utils/dateUtils';
+import { DateRange } from '../../contexts/main';
 
 const CENTER_HEIGHT = Dimensions.get('window').height / 4;
 
 interface DataRangeInputProps {
+  name: string;
+  control: Control<any>;
   isCreateTask?: boolean;
-  value: string;
-  onChageDate: (e: string | ChangeEvent<any>) => void;
 }
 
-export function DateRangeInput({ isCreateTask = false, value, onChageDate }: DataRangeInputProps) {
-  const [dateRange, setDateRange] = useState<DateRange>({
-    startDate: null,
-    endDate: null,
-  });
-  useEffect(() => {
-    function updateValue() {
-      if (dateRange.startDate && dateRange.endDate) {
-        onChageDate(
-          formatDateRange({ startDate: dateRange.startDate, endDate: dateRange.endDate }),
-        );
-      }
-    }
-    updateValue();
-  }, [dateRange]);
+const defaultDateRange = {
+  startDate: null,
+  endDate: null,
+};
+
+export function DateRangeInput({ name, control, isCreateTask = false }: DataRangeInputProps) {
+  const { field } = useController({ name, control });
+
+  const [dateRange, setDateRange] = useState<DateRange>(field.value ?? defaultDateRange);
 
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [calendarContainerLayout, setCalendarContainerLayout] = useState({
@@ -88,6 +83,10 @@ export function DateRangeInput({ isCreateTask = false, value, onChageDate }: Dat
 
     return setDateRange({ startDate: null, endDate: null });
   };
+
+  useEffect(() => {
+    field.onChange(dateRange);
+  }, [dateRange]);
 
   const computedMarkedDates = useMemo(() => {
     if (!dateRange.startDate && !dateRange.endDate) return {};

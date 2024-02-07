@@ -1,20 +1,28 @@
 import React from 'react';
+import { Control, useController } from 'react-hook-form';
 import { TextInputProps } from 'react-native';
 
 import { Container, Label, TextError } from './style';
 import { Input } from '../../atoms/input';
 
-interface props extends TextInputProps {
+interface InputFieldProps {
+  name: string;
+  control: Control<any>;
   label: string;
-  error: string | undefined;
 }
 
-export function InputField({ label, error, ...props }: props) {
+export function InputField({ name, control, label }: InputFieldProps) {
+  const { field, fieldState } = useController({ name, control });
+
   return (
     <Container>
       <Label>{label}</Label>
-      <Input placeholder="Digite aqui" {...props} />
-      {error && <TextError>{error}</TextError>}
+      <Input
+        placeholder="Digite aqui"
+        onChangeText={(text) => field.onChange(text)}
+        onBlur={field.onBlur}
+      />
+      {fieldState.error && <TextError>{fieldState.error.message}</TextError>}
     </Container>
   );
 }

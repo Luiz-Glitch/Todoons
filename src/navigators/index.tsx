@@ -3,8 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { RootStackParamsList } from './RootStackParams';
 import { CreateTaskScreen } from '../screens/CreateTask';
 import { HomeScreen } from '../screens/Home';
+import { TaskDetailsScreen } from '../screens/TaskDetails';
 
 const TitleComponent = styled.Text`
   margin-top: 40px;
@@ -19,7 +21,7 @@ function Title({ name }: { name: string }) {
 }
 
 export function Routes() {
-  const { Navigator, Screen } = createNativeStackNavigator();
+  const { Navigator, Screen } = createNativeStackNavigator<RootStackParamsList>();
   return (
     <NavigationContainer>
       <Navigator
@@ -42,6 +44,7 @@ export function Routes() {
             headerTitle: (props) => <Title name="Criar tarefa" {...props} />,
           }}
         />
+        <Screen name="DetailTask" component={TaskDetailsScreen} options={{ headerShown: false }} />
       </Navigator>
     </NavigationContainer>
   );

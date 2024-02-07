@@ -32,10 +32,6 @@ class EnumOption {
       .filter(([key, value]) => value instanceof this)
       .map(([key, { label, value, color }]) => ({ label, value, color }));
   }
-
-  static getOption(value: any) {
-    return this.options.find((option) => option.value === value);
-  }
 }
 
 export class TaskStatus extends EnumOption {
@@ -45,7 +41,8 @@ export class TaskStatus extends EnumOption {
 }
 
 export class TaskPriority extends EnumOption {
-  static readonly LOW = new this('Baixa', 'BAIXA', '#3589EB');
-  static readonly MEDIUM = new this('Média', 'MEDIA', '#EBB835');
   static readonly HIGH = new this('Alta', 'ALTA', '#EB3535');
+  static readonly MEDIUM = new this('Média', 'MEDIA', '#EBB835');
+  static readonly LOW = new this('Baixa', 'BAIXA', '#3589EB');
+  static readonly NORMAL = new this('Sem prioridade', null);
 }

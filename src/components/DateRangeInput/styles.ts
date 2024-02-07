@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import theme from '../../../style/theme';
+import theme from '../../style/theme';
 
 export const Label = styled.Text`
   font-size: ${({ theme }) => theme.texts.bodyP3Regular.fontSize}px;

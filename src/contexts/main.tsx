@@ -11,18 +11,22 @@ export interface DateRange {
 export interface TaskProps {
   id: number;
   title: string;
-  description?: string;
-  categories?: [];
-  term?: string;
+  status?: string;
   emphasis?: boolean;
   priority?: string;
-  checked?: boolean;
+  categories?: string[];
+  dates?: DateRange;
+  description?: string;
+  check?: boolean;
 }
 
 interface MainContextProps {
   tasks: TaskProps[];
   createTask: (task: TaskProps) => void;
+  getTask: (taskID: number) => TaskProps;
+  updateTask: (task: TaskProps) => void;
   deleteTask: (task: TaskProps) => void;
+  checkTask: (task: TaskProps) => void;
 }
 interface MainProviderProps {
   children: ReactNode;
@@ -54,21 +58,36 @@ export default function MainProvider({ children }: MainProviderProps) {
     saveStorage();
   }, [tasks]);
 
-  async function createTask(task: TaskProps) {
+  function createTask(task: TaskProps) {
     alert(JSON.stringify(task));
     const tasksStorage = [...tasks, task];
     setTasks(tasksStorage);
   }
 
-  async function deleteTask(task: TaskProps) {
+  function getTask(taskID: number) {
+    const index = tasks.findIndex((task) => task.id === taskID);
+    return tasks[index];
+  }
+
+  function updateTask(updatedTask: TaskProps) {
+    setTasks((tasks) => tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
+  }
+
+  function deleteTask(task: TaskProps) {
     const index = tasks.indexOf(task);
     const newValues = tasks;
     newValues.splice(index, 1);
     setTasks([...newValues]);
   }
 
+  function checkTask(task: TaskProps) {
+    const index = tasks.indexOf(task);
+    tasks[index].check = !tasks[index].check;
+    setTasks([...tasks]);
+  }
+
   return (
-    <MainContext.Provider value={{ tasks, createTask, deleteTask }}>
+    <MainContext.Provider value={{ tasks, createTask, getTask, updateTask, deleteTask, checkTask }}>
       {children}
     </MainContext.Provider>
   );
